@@ -2,9 +2,18 @@ import sys
 import re
 import math
 
+LANG = "vi"
 NGRAM_SIZES = (1, 2, 3)
 THRESHOLD = 1.38 # Vietnamese
-RE_NON_ALNUM = re.compile("([,.?!:;@#$%^&*()_+='\"-]+)")
+RE_NON_ALNUM = re.compile("([^0-9A-Za-z\u00C0-\u024F\u1E00-\u1EFF]+)")
+
+'''
+0030-0039, 0041-005A, 0061-007A (Basic Latin)
+00C0-00FF (Latin-1 Supplement)
+0100-017F (Latin Extended-A)
+0180-024F (Latin Extended-B)
+1E00-1EFF (Latin Extended Additional)
+'''
 
 def normalize(x):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
@@ -33,9 +42,10 @@ def entropy(p):
     return -p * math.log(p)
 
 def branching_entropy():
-
     cnt = 0
     freq = dict()
+    be = dict()
+
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
@@ -55,7 +65,6 @@ def branching_entropy():
             print("%d lines" % cnt)
     fo.close()
 
-    be = dict()
     for w0, w1 in freq.items():
         c = sum(w1.values())
         h = sum(entropy(f / c) for f in w1.values())
