@@ -1,2 +1,3 @@
-# word-segmentation
-Word Segmentation
+# Word Segmentation
+
+Unsupervised word segmentation.
