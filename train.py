@@ -17,8 +17,8 @@ def train():
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
-        tokens = ("SOS", *line.split(" "), "EOS")
-        for _, ngram in ngram_iter(tokens, ngram_sizes):
+        tkns = ("<SOS>", *line.split(" "), "<EOS>")
+        for _, ngram in ngram_iter(tkns, ngram_sizes):
             wL, *w, wR = ngram
             if not valid(w):
                 continue

@@ -21,13 +21,13 @@ def tokenize(model):
     for line in fo:
         line = normalize(line, False)
         line = re.sub("_", "__", line)
-        tokens_cs = line.split(" ")
-        tokens_ci = line.lower().split(" ")
+        tkns_raw = line.split(" ")
+        tkns_norm = line.lower().split(" ")
         if DEBUG:
             print(line)
 
-        scores = [[] for _ in tokens_ci]
-        for i, w in ngram_iter(tokens_ci, NGRAM_SIZES):
+        scores = [[] for _ in tkns_raw]
+        for i, w in ngram_iter(tkns_norm, NGRAM_SIZES):
             w = tuple(w)
             if w in model:
                 scores[i].append((model[w], len(w)))
@@ -35,23 +35,22 @@ def tokenize(model):
         i = 0
         _output = []
         while i < len(scores):
-            _scores = [x for x in scores[i] if x[1] > 1]
-            if _scores:
-                _score, _len = max(_scores, key = lambda x: x[1])
-                _word = "_".join(tokens_cs[i:i + _len])
-                _output.append(_word)
-                if DEBUG:
-                    for _score, _len  in _scores:
-                        _word = "_".join(tokens_ci[i:i + _len])
-                        print((i, _word, _score))
-                i += _len
-            else:
-                _output.append(tokens_cs[i])
+            if not scores[i]:
                 i += 1
-
+                continue
+            _scores = scores[i] + [(0, 0)]
+            if DEBUG and len(_scores) > 1:
+                print("scores[%d] = " % i)
+                for h, j in _scores[:-1]:
+                    print(("_".join(tkns_raw[i:i + j]), h))
+            for j in range(1, len(_scores)):
+                if _scores[j] < _scores[j - 1]:
+                    _output.append("_".join(tkns_raw[i:i + j]))
+                    i += j
+                    break
+            if DEBUG:
+                print()
         output.append(" ".join(_output))
-        if DEBUG:
-            print()
 
     fo.close()
     return output
