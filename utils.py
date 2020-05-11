@@ -11,18 +11,19 @@ from parameters import *
 
 RE_NON_ALNUM = re.compile("([^0-9A-Za-z\u00C0-\u024F\u1E00-\u1EFF]+)")
 
-def normalize(x):
+def normalize(x, lc = True):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
     x = re.sub("\s+", " ", x)
     x = x.strip()
-    x = x.lower()
+    if lc:
+        x = x.lower()
     return x
 
-def ngram_iter(x):
-    for j in NGRAM_SIZES:
-        for i in range(len(x) - j):
-            ngram = tuple(x[i:i + j + 1])
-            yield ngram
+def ngram_iter(tokens, sizes):
+    for j in sizes:
+        for i in range(len(tokens) - j + 1):
+            ngram = tuple(tokens[i:i + j])
+            yield i, ngram
 
 def valid(x):
     for x in x:

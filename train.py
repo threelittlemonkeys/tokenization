@@ -7,16 +7,17 @@ from parameters import *
 def entropy(p):
     return -p * math.log(p)
 
-def branching_entropy():
-    cnt = 0
+def train():
+    num_data = 0
     freq = dict()
-    be = dict()
+    model = dict() # branching entropy
+    ngram_sizes = [z + 1 for z in NGRAM_SIZES]
 
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
         tokens = line.split(" ")
-        for ngram in ngram_iter(tokens):
+        for _, ngram in ngram_iter(tokens, ngram_sizes):
             if not valid(ngram):
                 continue
             *w0, w1 = ngram
@@ -26,22 +27,21 @@ def branching_entropy():
             if w1 not in freq[w0]:
                 freq[w0][w1] = 0
             freq[w0][w1] += 1
-        cnt += 1
-        if cnt % 100000 == 0:
-            print("%d lines" % cnt)
+        num_data += 1
+        if num_data % 100000 == 0:
+            print("%d lines" % num_data)
     fo.close()
 
     for w0, w1 in freq.items():
         c = sum(w1.values())
         h = sum(entropy(f / c) for f in w1.values())
-        be[w0] = h
+        model[w0] = h
 
-    return be, cnt
+    return model, num_data
 
-def train():
-    be, cnt = branching_entropy()
-    fo = open("%s/model.%dk" % (os.path.dirname(sys.argv[1]), cnt // 1000), "w")
-    for w, h in sorted(be.items(), key = lambda x: -x[1]):
+def save_model(model, num_data):
+    fo = open("%s/model.%dk" % (os.path.dirname(sys.argv[1]), num_data // 1000), "w")
+    for w, h in sorted(model.items(), key = lambda x: -x[1]):
         if h < THRESHOLD:
             break
         w = " ".join(w)
@@ -51,4 +51,5 @@ def train():
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("Usage: %s training_data" % sys.argv[0])
-    train()
+    model, num_data = train()
+    save_model(model, num_data)
