@@ -1,3 +1,4 @@
+import os
 import sys
 import math
 from utils import *
@@ -35,11 +36,11 @@ def branching_entropy():
         h = sum(entropy(f / c) for f in w1.values())
         be[w0] = h
 
-    return be
+    return be, cnt
 
 def train():
-    be = branching_entropy()
-    fo = open(sys.argv[1] + ".be", "w")
+    be, cnt = branching_entropy()
+    fo = open("%s/model.%dk" % (os.path.dirname(sys.argv[1]), cnt // 1000), "w")
     for w, h in sorted(be.items(), key = lambda x: -x[1]):
         if h < THRESHOLD:
             break
