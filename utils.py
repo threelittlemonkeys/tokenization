@@ -22,15 +22,19 @@ def normalize(x, lc = True):
 def ngram_iter(tokens, sizes):
     for j in sizes:
         for i in range(len(tokens) - j + 1):
-            ngram = tuple(tokens[i:i + j])
+            ngram = tokens[i:i + j]
             yield i, ngram
 
 def valid(x):
+    if type(x) != list:
+        x = [x]
     for x in x:
         if len(x) == 1:
             return False
+        '''
         if x.isdigit():
             return False
+        '''
         if RE_NON_ALNUM.fullmatch(x):
             return False
     return True
