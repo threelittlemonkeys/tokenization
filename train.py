@@ -15,37 +15,32 @@ def entropy(p):
     return -p * math.log(p)
 
 def train():
-    freq = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
+    freq = defaultdict(lambda: defaultdict(int))
     model = dict()
     num_data = 0
-    ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append SOS and EOS tokens
+    ngram_sizes = [z + 1 for z in NGRAM_SIZES] # append EOS tokens
 
     print("calculating token frequencies")
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
-        tkns = ("<SOS>", *line.split(" "), "<EOS>")
+        tkns = (*line.split(" "), "<EOS>")
         for _, ngram in ngram_iter(tkns, ngram_sizes):
-            wL, *w, wR = ngram
+            *w, wR = ngram
             if not valid(w):
                 continue
             w = tuple(w)
-            freq[w][0][wL] += 1
-            freq[w][1][wR] += 1
+            freq[w][wR] += 1
         num_data += 1
         if num_data % 100000 == 0:
             print("%d lines" % num_data)
     fo.close()
 
     print("calculating branching entropies")
-    for w, (fL, fR) in freq.items():
-        # left branching entopy
-        zL = sum(fL.values())
-        hL = sum(entropy(f / zL) for f in fL.values())
+    for w, fs in freq.items():
         # right branching entopy
-        zR = sum(fR.values())
-        hR = sum(entropy(f / zR) for f in fR.values())
-        h = hL * hR
+        z = sum(fs.values())
+        h = sum(entropy(f / z) for f in fs.values())
         if h < THRESHOLD:
             continue
         model[w] = h
