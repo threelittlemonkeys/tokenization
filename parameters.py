@@ -1,4 +1,4 @@
 LANG = "vi"
-NGRAM_SIZES = (1, 2, 3, 4, 5)
+NGRAM_SIZES = (1, 2, 3)
 THRESHOLD = 1
 DEBUG = True
