@@ -19,7 +19,8 @@ def tokenize(model):
     output = []
 
     # separator
-    if LANG == "vi": sep = "_"
+    if LANG in ("ja", "ko", "zh"): sep = ""
+    elif LANG == "vi": sep = "_"
     else: sep = " "
 
     fo = open(sys.argv[2])
@@ -31,6 +32,7 @@ def tokenize(model):
         tkns_norm = line.lower().split(" ")
         if DEBUG:
             print(line)
+            print()
 
         scores = [[] for _ in tkns_raw]
         for i, w in ngram_iter(tkns_norm, NGRAM_SIZES):
@@ -57,7 +59,11 @@ def tokenize(model):
                     break
             if DEBUG:
                 print()
-        output.append(" ".join(_output))
+        _output = " ".join(_output)
+        if DEBUG:
+            print(_output)
+            print()
+        output.append(_output)
 
     fo.close()
     return output
