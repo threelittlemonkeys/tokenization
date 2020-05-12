@@ -8,11 +8,15 @@ from parameters import *
 # 0100-017F (Latin Extended-A)
 # 0180-024F (Latin Extended-B)
 # 1E00-1EFF (Latin Extended Additional)
+# AC00-D7AF (Hangul Syllables)
 
-RE_NON_ALNUM = re.compile("([^0-9A-Za-z\u00C0-\u024F\u1E00-\u1EFF]+)")
+RE_NON_ALNUM = re.compile("([^0-9A-Za-z\u00C0-\u024F\u1E00-\u1EFF\uAC00-\uD7AF]+)")
+RE_CJK = re.compile("([\u4E00-\u9FFF\uAC00-\uD7AF])")
 
 def normalize(x, lc = True):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
+    if LANG in ("ja", "ko", "zh"):
+        x = RE_CJK.sub(r" \1 ", x)
     x = re.sub("\s+", " ", x)
     x = x.strip()
     if lc:

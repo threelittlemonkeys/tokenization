@@ -5,11 +5,9 @@ from utils import *
 from parameters import *
 from collections import defaultdict
 
-def valid(x):
-    for x in x:
-        if len(x) == 1:
-            return False
-        if RE_NON_ALNUM.fullmatch(x):
+def valid(ls):
+    for w in ls:
+        if RE_NON_ALNUM.fullmatch(w):
             return False
     return True
 
