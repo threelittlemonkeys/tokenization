@@ -60,6 +60,7 @@ def save_model(model, num_data):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit("Usage: %s training_data" % sys.argv[0])
+    print("LANG =", LANG)
     print("NGRAM_SIZES =", NGRAM_SIZES)
     print("THRESHOLD =", THRESHOLD)
     model, num_data = train()
