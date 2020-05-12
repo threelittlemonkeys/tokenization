@@ -15,6 +15,36 @@ def load_model():
     fo.close()
     return model
 
+def load_stopwords():
+    stopwords = {("<EOS>",): True}
+    fo = open(sys.argv[2])
+    for line in fo:
+        line = line.strip()
+        line = line.lower()
+        w = tuple(line.split(" "))
+        stopwords[w] = True
+    fo.close()
+    return stopwords
+
+def decode(scores, tkns_raw, sep):
+    i = 0
+    output = []
+    while i < len(scores):
+        if not scores[i]:
+            output.append(tkns_raw[i])
+            i += 1
+            continue
+        _scores = scores[i] + [(0, 0, 0)] # append EOS token
+        if DEBUG and len(_scores) > 1:
+            for p, h, j in _scores[:-1]:
+                print("scores[%d] = " % p, (" ".join(tkns_raw[i:i + j]), h))
+        for j in range(1, len(_scores)):
+            if _scores[j] < _scores[j - 1]: # word boundary
+                output.append(sep.join(tkns_raw[i:i + j]))
+                i += j
+                break
+    return output
+
 def tokenize(model):
     output = []
 
@@ -23,54 +53,50 @@ def tokenize(model):
     elif LANG == "vi": sep = "_"
     else: sep = " "
 
-    fo = open(sys.argv[2])
+    fo = open(sys.argv[3])
     for line in fo:
         line = normalize(line, False)
         if LANG == "vi":
             line = re.sub("_", "__", line)
-        tkns_raw = line.split(" ")
-        tkns_norm = line.lower().split(" ")
-        if DEBUG:
-            print(line)
-            print()
+        tkns_raw = line.split(" ") + ["<EOS>"]
+        tkns_norm = line.lower().split(" ") + ["<EOS>"]
 
         scores = [[] for _ in tkns_raw]
         for i, w in ngram_iter(tkns_norm, NGRAM_SIZES):
             w = tuple(w)
             if w in model:
-                scores[i].append((model[w], len(w)))
+                scores[i].append((i, model[w], len(w)))
 
-        i = 0
+        i, k = 0, 0
         _output = []
-        while i < len(scores):
-            if not scores[i]:
-                _output.append(tkns_raw[i])
-                i += 1
-                continue
-            _scores = scores[i] + [(0, 0)] # append EOS token
-            if DEBUG and len(_scores) > 1:
-                print("scores[%d] = " % i)
-                for h, j in _scores[:-1]:
-                    print((" ".join(tkns_raw[i:i + j]), h))
-            for j in range(1, len(_scores)):
-                if _scores[j] < _scores[j - 1]: # word boundary
-                    _output.append(sep.join(tkns_raw[i:i + j]))
-                    i += j
+        while i < len(tkns_raw):
+            f = 0
+            for j in range(max(map(len, stopwords)), 0, -1):
+                if i + j > len(tkns_raw):
+                    continue
+                w = tuple(tkns_norm[i:i + j])
+                if w in stopwords:
+                    _output.extend(decode(scores[k:i], tkns_raw[k:i], sep))
+                    _output.append(sep.join(w))
+                    f = k = i = i + j
                     break
-            if DEBUG:
-                print()
-        _output = " ".join(_output)
-        if DEBUG:
-            print(_output)
-            print()
+            i += not f
+
+        _output = " ".join(_output[:-1])
         output.append(_output)
+
+        if DEBUG:
+            print("\n" + line)
+            print(_output + "\n")
 
     fo.close()
     return output
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        sys.exit("Usage: %s model test_data" % sys.argv[0])
+    if len(sys.argv) != 4:
+        sys.exit("Usage: %s model stopwords test_data" % sys.argv[0])
     model = load_model()
-    for line in tokenize(model):
+    stopwords = load_stopwords()
+    output = tokenize(model)
+    for line in output:
         print(line)
