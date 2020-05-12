@@ -16,11 +16,17 @@ def load_model():
     return model
 
 def tokenize(model):
-    fo = open(sys.argv[2])
     output = []
+
+    # separator
+    if LANG == "vi": sep = "_"
+    else: sep = " "
+
+    fo = open(sys.argv[2])
     for line in fo:
         line = normalize(line, False)
-        line = re.sub("_", "__", line)
+        if LANG == "vi":
+            line = re.sub("_", "__", line)
         tkns_raw = line.split(" ")
         tkns_norm = line.lower().split(" ")
         if DEBUG:
@@ -36,16 +42,17 @@ def tokenize(model):
         _output = []
         while i < len(scores):
             if not scores[i]:
+                _output.append(tkns_raw[i])
                 i += 1
                 continue
-            _scores = scores[i] + [(0, 0)]
+            _scores = scores[i] + [(0, 0)] # append EOS token
             if DEBUG and len(_scores) > 1:
                 print("scores[%d] = " % i)
                 for h, j in _scores[:-1]:
-                    print(("_".join(tkns_raw[i:i + j]), h))
+                    print((" ".join(tkns_raw[i:i + j]), h))
             for j in range(1, len(_scores)):
-                if _scores[j] < _scores[j - 1]:
-                    _output.append("_".join(tkns_raw[i:i + j]))
+                if _scores[j] < _scores[j - 1]: # word boundary
+                    _output.append(sep.join(tkns_raw[i:i + j]))
                     i += j
                     break
             if DEBUG:
