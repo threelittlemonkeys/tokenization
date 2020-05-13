@@ -30,16 +30,19 @@ def decode(scores, tkns_raw, sep):
     i = 0
     output = []
     while i < len(scores):
-        if not scores[i]:
+        # _scores = [x for x in scores[i] if x[2] > 1]
+        _scores = scores[i][:]
+        if not _scores:
             output.append(tkns_raw[i])
             i += 1
             continue
-        _scores = scores[i] + [(0, 0, 0)] # append EOS token
+        _scores.append((0, 0, 0)) # EOS token
         if DEBUG and len(_scores) > 1:
             for p, h, j in _scores[:-1]:
                 print("scores[%d] = " % p, (" ".join(tkns_raw[i:i + j]), h))
-        for j in range(1, len(_scores)):
-            if _scores[j] < _scores[j - 1]: # word boundary
+        for k in range(1, len(_scores)):
+            if _scores[k] < _scores[k - 1]: # word boundary
+                j = _scores[k - 1][2]
                 output.append(sep.join(tkns_raw[i:i + j]))
                 i += j
                 break
@@ -88,6 +91,7 @@ def tokenize(model):
         if DEBUG:
             print("\n" + line)
             print(_output + "\n")
+            input()
 
     fo.close()
     return output

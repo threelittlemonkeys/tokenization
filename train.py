@@ -15,7 +15,7 @@ def entropy(p):
     return -p * math.log(p)
 
 def train():
-    freq = defaultdict(lambda: defaultdict(int))
+    freq = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
     model = dict()
     num_data = 0
     ngram_sizes = [z + 1 for z in NGRAM_SIZES] # append EOS tokens
@@ -24,25 +24,26 @@ def train():
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
-        tkns = (*line.split(" "), "<EOS>")
+        tkns = ("<SOS>", *line.split(" "), "<EOS>")
         for _, ngram in ngram_iter(tkns, ngram_sizes):
-            *w, wR = ngram
+            wL, *w, wR = ngram
             if not valid(w):
                 continue
             w = tuple(w)
-            freq[w][wR] += 1
+            freq[w][0][wL] += 1
+            freq[w][1][wR] += 1
         num_data += 1
         if num_data % 100000 == 0:
             print("%d lines" % num_data)
     fo.close()
 
     print("calculating entropies")
-    for w, fs in freq.items():
-        z = sum(fs.values())
-        h = sum(entropy(f / z) for f in fs.values())
-        if h < THRESHOLD:
-            continue
-        model[w] = h
+    for w, (fL, fR) in freq.items():
+        zL = sum(fL.values())
+        hL = sum(entropy(f / zL) for f in fL.values())
+        zR = sum(fR.values())
+        hR = sum(entropy(f / zR) for f in fR.values())
+        model[w] = (hL, hR, hL + hR)
 
     return model, num_data
 
@@ -51,9 +52,9 @@ def save_model(model, num_data):
     filename = "%s/model.%dk" % (os.path.dirname(sys.argv[1]), num_data)
     print("saving model")
     fo = open(filename, "w")
-    for w, h in sorted(model.items(), key = lambda x: -x[1]):
+    for w, (hL, hR, h) in sorted(model.items(), key = lambda x: -x[1][-1]):
         w = " ".join(w)
-        fo.write("%.6f %s\n" % (h, w))
+        fo.write("%s %.6f %.6f %.6f\n" % (w, hL, hR, h))
     fo.close()
 
 if __name__ == "__main__":
