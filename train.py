@@ -20,7 +20,7 @@ def train():
     num_data = 0
     ngram_sizes = [z + 1 for z in NGRAM_SIZES] # append EOS tokens
 
-    print("calculating token frequencies")
+    print("calculating frequencies")
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
@@ -36,9 +36,8 @@ def train():
             print("%d lines" % num_data)
     fo.close()
 
-    print("calculating branching entropies")
+    print("calculating entropies")
     for w, fs in freq.items():
-        # right branching entopy
         z = sum(fs.values())
         h = sum(entropy(f / z) for f in fs.values())
         if h < THRESHOLD:
