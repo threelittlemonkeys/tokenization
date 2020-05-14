@@ -43,7 +43,7 @@ def train():
         hL = sum(entropy(f / zL) for f in fL.values())
         zR = sum(fR.values())
         hR = sum(entropy(f / zR) for f in fR.values())
-        if hL < THRESHOLD and HR < THRESHOLD:
+        if hL < THRESHOLD and hR < THRESHOLD:
             continue
         model[w] = (hL, hR)
 
