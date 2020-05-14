@@ -1,4 +1,4 @@
-LANG = "ko"
+LANG = "vi"
 NGRAM_SIZES = (2, 3)
 THRESHOLD = 1
-DEBUG = False
+DEBUG = True

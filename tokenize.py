@@ -31,10 +31,16 @@ def decode(scores, tokens):
     output = [0]
     for i in range(1, len(scores)):
         dL = scores[i][0] - scores[i - 1][0]
-        # dR = scores[i][1] - scores[i - 1][1]
-        if dL > 0: # word boundary
+        dR = scores[i][1] - scores[i - 1][1]
+        if dL >= 0: # left word boundary
             output.append(i)
+        if dR >= 0: # left word boundary
+            output.append(i + scores[i][2])
     output.append(len(scores))
+
+    # TODO
+    output = list(set(output))
+
     output = [tokens[i:j] for i, j in zip(output[:-1], output[1:])]
     return output
 
@@ -62,14 +68,15 @@ def tokenize(model, stopwords):
             for j in NGRAM_SIZES:
                 if i + j > len(tokens):
                     break
-                w = tuple(tokens[i:i + j])
+                w = tuple(_tokens[i:i + j])
                 if w in model:
-                    _scores.append((*model[w], sep.join(w)))
+                    _scores.append((*model[w], len(w)))
             if not _scores:
-                _scores.append((0, 0, tokens[i]))
+                _scores.append((0, 0, 1))
             scores[i] = max(_scores, key = lambda x: sum(x[:2]))
             if DEBUG:
-                print("score[%d] = " % i, scores[i])
+                w = sep.join(tokens[i:i + scores[i][2]])
+                print("score[%d] = " % i, (*scores[i][:2], w))
 
         i, k = 0, 0
         _output = []
@@ -88,11 +95,9 @@ def tokenize(model, stopwords):
         output.append(_output)
 
         if DEBUG:
-            print()
-            print("line =", line)
-            print("tokens =", tokens[:-1])
-            print("output =", _output)
-            print()
+            print("\nline =", line)
+            print("output = %s\n", _output)
+            input()
 
     fo.close()
     return output
