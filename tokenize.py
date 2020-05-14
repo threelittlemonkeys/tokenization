@@ -95,8 +95,8 @@ def tokenize(model, stopwords):
         output.append(_output)
 
         if DEBUG:
-            print("\nline =", line)
-            print("output = %s\n", _output)
+            print("\nline = %s" % line)
+            print("output = %s\n" % _output)
             input()
 
     fo.close()
