@@ -25,14 +25,7 @@ def normalize(x, lc = True):
     return x
 
 def ngram_iter(tokens, sizes):
-    for i in range(len(tokens)):
-        for j in sizes:
-            if i + j > len(tokens):
-                break
-            yield i, tokens[i:i + j]
-    '''
     for j in sizes:
         for i in range(len(tokens) - j + 1):
             ngram = tokens[i:i + j]
             yield i, ngram
-    '''

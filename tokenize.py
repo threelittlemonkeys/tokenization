@@ -27,22 +27,15 @@ def load_stopwords():
     fo.close()
     return stopwords
 
-def decode(scores, tokens_raw, sep):
-    i = 0
-    output = []
-    while i < len(scores):
-        score = [x for x in scores[i] if x[1] > 1]
-        if not score:
-            output.append(tokens_raw[i])
-            i += 1
-            continue
-        score.append((0, 0, 0, 0)) # EOS token
-        for k in range(1, len(score)):
-            if score[k][3] < score[k - 1][3]: # right word boundary
-                j = score[k - 1][1]
-                output.append(sep.join(tokens_raw[i:i + j]))
-                i += j
-                break
+def decode(scores, tokens):
+    output = [0]
+    for i in range(1, len(scores)):
+        dL = scores[i][0] - scores[i - 1][0]
+        # dR = scores[i][1] - scores[i - 1][1]
+        if dL > 0: # word boundary
+            output.append(i)
+    output.append(len(scores))
+    output = [tokens[i:j] for i, j in zip(output[:-1], output[1:])]
     return output
 
 def tokenize(model, stopwords):
@@ -56,41 +49,48 @@ def tokenize(model, stopwords):
 
     fo = open(sys.argv[3])
     for line in fo:
-        line_raw = line.strip()
-        line_norm = normalize(line, False)
+        line = line.strip()
+        _line = normalize(line, False)
         if LANG == "vi":
-            line_norm = re.sub("_", "__", line)
-        tokens_raw = line_norm.split(" ") + ["<EOS>"]
-        tokens_norm = line_norm.lower().split(" ") + ["<EOS>"]
+            _line = re.sub("_", "__", line)
+        tokens = _line.split(" ") + ["<EOS>"]
+        _tokens = _line.lower().split(" ") + ["<EOS>"]
 
-        scores = [[] for _ in tokens_raw]
-        for i, w in ngram_iter(tokens_norm, NGRAM_SIZES):
-            w = tuple(w)
-            if w in model:
-                scores[i].append((i, len(w), *model[w]))
-                if DEBUG:
-                    print("score[%d] = " % i, (*model[w], sep.join(w)))
+        scores = [0] * len(tokens)
+        for i in range(len(tokens)):
+            _scores = []
+            for j in NGRAM_SIZES:
+                if i + j > len(tokens):
+                    break
+                w = tuple(tokens[i:i + j])
+                if w in model:
+                    _scores.append((*model[w], sep.join(w)))
+            if not _scores:
+                _scores.append((0, 0, tokens[i]))
+            scores[i] = max(_scores, key = lambda x: sum(x[:2]))
+            if DEBUG:
+                print("score[%d] = " % i, scores[i])
 
         i, k = 0, 0
         _output = []
-        while i < len(tokens_raw):
+        while i < len(tokens):
             f = 0
-            for j in range(min(stw_len, len(tokens_raw) - i), 0, -1):
-                w = tuple(tokens_norm[i:i + j])
+            for j in range(min(stw_len, len(tokens) - i), 0, -1):
+                w = tuple(_tokens[i:i + j])
                 if w in stopwords:
-                    _output.extend(decode(scores[k:i], tokens_raw[k:i], sep))
-                    _output.append(sep.join(w))
+                    _output.extend(decode(scores[k:i], tokens[k:i]))
+                    _output.append(w)
                     f = k = i = i + j
                     break
             i += not f
 
-        _output = " ".join(_output[:-1])
+        _output = " ".join(sep.join(w) for w in _output[:-1])
         output.append(_output)
 
         if DEBUG:
             print()
-            print("line =", line_raw)
-            print("tokens =", tokens_raw[:-1])
+            print("\nline =", line)
+            print("tokens =", tokens[:-1])
             print("output =", _output)
             print()
 
