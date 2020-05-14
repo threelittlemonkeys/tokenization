@@ -18,14 +18,14 @@ def train():
     freq = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
     model = dict()
     num_data = 0
-    ngram_sizes = [z + 1 for z in NGRAM_SIZES] # append EOS tokens
+    ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append EOS tokens
 
-    print("calculating frequencies")
+    print("calculating token frequencies")
     fo = open(sys.argv[1])
     for line in fo:
         line = normalize(line)
-        tkns = ("<SOS>", *line.split(" "), "<EOS>")
-        for _, ngram in ngram_iter(tkns, ngram_sizes):
+        tokens = ("<SOS>", *line.split(" "), "<EOS>")
+        for _, ngram in ngram_iter(tokens, ngram_sizes):
             wL, *w, wR = ngram
             if not valid(w):
                 continue
@@ -34,7 +34,7 @@ def train():
             freq[w][1][wR] += 1
         num_data += 1
         if num_data % 100000 == 0:
-            print("%d lines" % num_data)
+            print("%d lines, %d tokens" % (num_data, len(freq)))
     fo.close()
 
     print("calculating entropies")
@@ -43,7 +43,9 @@ def train():
         hL = sum(entropy(f / zL) for f in fL.values())
         zR = sum(fR.values())
         hR = sum(entropy(f / zR) for f in fR.values())
-        model[w] = (hL, hR, hL + hR)
+        if hL + hR < THRESHOLD:
+            continue
+        model[w] = (hL, hR)
 
     return model, num_data
 
@@ -52,9 +54,9 @@ def save_model(model, num_data):
     filename = "%s/model.%dk" % (os.path.dirname(sys.argv[1]), num_data)
     print("saving model")
     fo = open(filename, "w")
-    for w, (hL, hR, h) in sorted(model.items(), key = lambda x: -x[1][-1]):
+    for w, (hL, hR) in sorted(model.items(), key = lambda x: -x[1][-1]):
         w = " ".join(w)
-        fo.write("%s %.6f %.6f %.6f\n" % (w, hL, hR, h))
+        fo.write("%s %.6f %.6f %.6f\n" % (w, hL, hR))
     fo.close()
 
 if __name__ == "__main__":

@@ -8,10 +8,11 @@ def load_model():
     fo = open(sys.argv[1])
     for line in fo:
         line = line.strip()
-        h, *w = line.split(" ")
+        *w, hL, hR = line.split(" ")
         w = tuple(w)
-        h = float(h)
-        model[w] = h
+        hL = float(hL)
+        hR = float(hR)
+        model[w] = (hL, hR)
     fo.close()
     return model
 
@@ -26,30 +27,27 @@ def load_stopwords():
     fo.close()
     return stopwords
 
-def decode(scores, tkns_raw, sep):
+def decode(scores, tokens_raw, sep):
     i = 0
     output = []
     while i < len(scores):
-        # _scores = [x for x in scores[i] if x[2] > 1]
-        _scores = scores[i][:]
-        if not _scores:
-            output.append(tkns_raw[i])
+        score = [x for x in scores[i] if x[2] > 1]
+        if not score:
+            output.append(tokens_raw[i])
             i += 1
             continue
-        _scores.append((0, 0, 0)) # EOS token
-        if DEBUG and len(_scores) > 1:
-            for p, h, j in _scores[:-1]:
-                print("scores[%d] = " % p, (" ".join(tkns_raw[i:i + j]), h))
-        for k in range(1, len(_scores)):
-            if _scores[k] < _scores[k - 1]: # word boundary
-                j = _scores[k - 1][2]
-                output.append(sep.join(tkns_raw[i:i + j]))
+        score.append((0, 0, 0, 0)) # EOS token
+        for k in range(1, len(score)):
+            if score[k][3] < score[k - 1][3]: # right word boundary
+                j = score[k - 1][1]
+                output.append(sep.join(tokens_raw[i:i + j]))
                 i += j
                 break
     return output
 
-def tokenize(model):
+def tokenize(model, stopwords):
     output = []
+    stw_len = max(map(len, stopwords)) # maximum stopword length
 
     # separator
     if LANG in ("ja", "ko", "zh"): sep = ""
@@ -58,28 +56,29 @@ def tokenize(model):
 
     fo = open(sys.argv[3])
     for line in fo:
-        line = normalize(line, False)
+        line_raw = line.strip()
+        line_norm = normalize(line, False)
         if LANG == "vi":
-            line = re.sub("_", "__", line)
-        tkns_raw = line.split(" ") + ["<EOS>"]
-        tkns_norm = line.lower().split(" ") + ["<EOS>"]
+            line_norm = re.sub("_", "__", line)
+        tokens_raw = line_norm.split(" ") + ["<EOS>"]
+        tokens_norm = line_norm.lower().split(" ") + ["<EOS>"]
 
-        scores = [[] for _ in tkns_raw]
-        for i, w in ngram_iter(tkns_norm, NGRAM_SIZES):
+        scores = [[] for _ in tokens_raw]
+        for i, w in ngram_iter(tokens_norm, NGRAM_SIZES):
             w = tuple(w)
             if w in model:
-                scores[i].append((i, model[w], len(w)))
+                scores[i].append((i, len(w), *model[w]))
+                if DEBUG:
+                    print("score[%d] = " % i, (*model[w], sep.join(w)))
 
         i, k = 0, 0
         _output = []
-        while i < len(tkns_raw):
+        while i < len(tokens_raw):
             f = 0
-            for j in range(max(map(len, stopwords)), 0, -1):
-                if i + j > len(tkns_raw):
-                    continue
-                w = tuple(tkns_norm[i:i + j])
+            for j in range(min(stw_len, len(tokens_raw) - i), 0, -1):
+                w = tuple(tokens_norm[i:i + j])
                 if w in stopwords:
-                    _output.extend(decode(scores[k:i], tkns_raw[k:i], sep))
+                    _output.extend(decode(scores[k:i], tokens_raw[k:i], sep))
                     _output.append(sep.join(w))
                     f = k = i = i + j
                     break
@@ -89,8 +88,11 @@ def tokenize(model):
         output.append(_output)
 
         if DEBUG:
-            print("\n" + line)
-            print(_output + "\n")
+            print()
+            print("line =", line_raw)
+            print("tokens =", tokens_raw[:-1])
+            print("output =", _output)
+            print()
             input()
 
     fo.close()
@@ -101,6 +103,6 @@ if __name__ == "__main__":
         sys.exit("Usage: %s model stopwords test_data" % sys.argv[0])
     model = load_model()
     stopwords = load_stopwords()
-    output = tokenize(model)
+    output = tokenize(model, stopwords)
     for line in output:
         print(line)
