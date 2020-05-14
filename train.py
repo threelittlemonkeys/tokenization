@@ -37,17 +37,15 @@ def train():
             print("%d lines, %d tokens" % (num_data, len(vocab)))
     fo.close()
 
-    print("calculating entropy")
+    print("calculating branching entropy")
     for w, (fL, fR) in vocab.items():
         zL = sum(fL.values())
-        hL = sum(entropy(f / zL) for f in fL.values())
+        hL = sum(entropy(f / zL) for f in fL.values()) # left BE
         zR = sum(fR.values())
-        hR = sum(entropy(f / zR) for f in fR.values())
+        hR = sum(entropy(f / zR) for f in fR.values()) # right BE
         if hL < THRESHOLD and hR < THRESHOLD:
             continue
         model[w] = (hL, hR)
-
-    print("calculating mutual information")
 
     return model, num_data
 
@@ -58,7 +56,7 @@ def save_model(model, num_data):
     fo = open(filename, "w")
     for w, (hL, hR) in sorted(model.items(), key = lambda x: -x[1][-1]):
         w = " ".join(w)
-        fo.write("%s %.6f %.6f %.6f\n" % (w, hL, hR))
+        fo.write("%s %.6f %.6f\n" % (w, hL, hR))
     fo.close()
 
 if __name__ == "__main__":

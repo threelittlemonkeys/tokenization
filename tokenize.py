@@ -89,7 +89,7 @@ def tokenize(model, stopwords):
 
         if DEBUG:
             print()
-            print("\nline =", line)
+            print("line =", line)
             print("tokens =", tokens[:-1])
             print("output =", _output)
             print()
