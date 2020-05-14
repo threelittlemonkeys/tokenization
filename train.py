@@ -15,7 +15,7 @@ def entropy(p):
     return -p * math.log(p)
 
 def train():
-    freq = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
+    vocab = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
     model = dict()
     num_data = 0
     ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append EOS tokens
@@ -30,22 +30,24 @@ def train():
             if not valid(w):
                 continue
             w = tuple(w)
-            freq[w][0][wL] += 1
-            freq[w][1][wR] += 1
+            vocab[w][0][wL] += 1
+            vocab[w][1][wR] += 1
         num_data += 1
         if num_data % 100000 == 0:
-            print("%d lines, %d tokens" % (num_data, len(freq)))
+            print("%d lines, %d tokens" % (num_data, len(vocab)))
     fo.close()
 
-    print("calculating entropies")
-    for w, (fL, fR) in freq.items():
+    print("calculating entropy")
+    for w, (fL, fR) in vocab.items():
         zL = sum(fL.values())
         hL = sum(entropy(f / zL) for f in fL.values())
         zR = sum(fR.values())
         hR = sum(entropy(f / zR) for f in fR.values())
-        if hL + hR < THRESHOLD:
+        if hL < THRESHOLD and HR < THRESHOLD:
             continue
         model[w] = (hL, hR)
+
+    print("calculating mutual information")
 
     return model, num_data
 

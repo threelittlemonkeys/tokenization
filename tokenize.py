@@ -31,7 +31,7 @@ def decode(scores, tokens_raw, sep):
     i = 0
     output = []
     while i < len(scores):
-        score = [x for x in scores[i] if x[2] > 1]
+        score = [x for x in scores[i] if x[1] > 1]
         if not score:
             output.append(tokens_raw[i])
             i += 1
@@ -93,7 +93,6 @@ def tokenize(model, stopwords):
             print("tokens =", tokens_raw[:-1])
             print("output =", _output)
             print()
-            input()
 
     fo.close()
     return output
