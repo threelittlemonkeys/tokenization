@@ -33,7 +33,7 @@ def decode(scores):
     _scores = [(0, 0, 0, 0), *scores, (0, 0, 0, 0)]
     for i in range(1, len(_scores) - 1):
         sL, s, sR = _scores[i - 1:i + 2]
-        if sL[1] == s[1] == 0:
+        if sL[1] == 0:
             output.append(i - 1)
         if sL[1] < s[1] > sR[1]:
             output.append(i - 1)
