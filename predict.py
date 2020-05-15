@@ -79,7 +79,7 @@ def tokenize(model):
 
         if DEBUG:
             print("\nline = %s" % line)
-            print("output = %s\n" % _output)
+            print("output = %s" % _output)
             input()
 
     fo.close()
