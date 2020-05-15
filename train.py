@@ -18,7 +18,7 @@ def train():
     vocab = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
     model = dict()
     num_data = 0
-    ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append EOS tokens
+    ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append SOS and EOS tokens
 
     print("calculating token frequencies")
     fo = open(sys.argv[1])
@@ -37,7 +37,7 @@ def train():
             print("%d lines, %d tokens" % (num_data, len(vocab)))
     fo.close()
 
-    print("calculating branching entropy")
+    print("calculating branching entropies")
     for w, (fL, fR) in vocab.items():
         zL = sum(fL.values())
         hL = sum(entropy(f / zL) for f in fL.values()) # left BE
