@@ -15,7 +15,7 @@ def entropy(p):
     return -p * math.log(p)
 
 def train():
-    vocab = defaultdict(lambda: [defaultdict(int), defaultdict(int)])
+    vocab = defaultdict(lambda: [0, defaultdict(int), defaultdict(int)])
     model = dict()
     num_data = 0
     ngram_sizes = [z + 2 for z in NGRAM_SIZES] # append SOS and EOS tokens
@@ -30,22 +30,21 @@ def train():
             if not valid(w):
                 continue
             w = tuple(w)
-            vocab[w][0][wL] += 1
-            vocab[w][1][wR] += 1
+            vocab[w][0] += 1
+            vocab[w][1][wL] += 1
+            vocab[w][2][wR] += 1
         num_data += 1
         if num_data % 100000 == 0:
             print("%d lines, %d tokens" % (num_data, len(vocab)))
     fo.close()
 
     print("calculating branching entropies")
-    for w, (fL, fR) in vocab.items():
-        zL = sum(fL.values())
-        hL = sum(entropy(f / zL) for f in fL.values()) # left BE
-        zR = sum(fR.values())
-        hR = sum(entropy(f / zR) for f in fR.values()) # right BE
+    for w, (freq, fL, fR) in vocab.items():
+        hL = sum(entropy(f / freq) for f in fL.values()) # left BE
+        hR = sum(entropy(f / freq) for f in fR.values()) # right BE
         if hL < THRESHOLD and hR < THRESHOLD:
             continue
-        model[w] = (hL, hR)
+        model[w] = (freq, hL, hR)
 
     return model, num_data
 
@@ -54,9 +53,9 @@ def save_model(model, num_data):
     filename = "%s/model.%dk" % (os.path.dirname(sys.argv[1]), num_data)
     print("saving model")
     fo = open(filename, "w")
-    for w, (hL, hR) in sorted(model.items(), key = lambda x: -x[1][-1]):
+    for w, (freq, hL, hR) in sorted(model.items(), key = lambda x: -x[1][-1]):
         w = " ".join(w)
-        fo.write("%s %.6f %.6f\n" % (w, hL, hR))
+        fo.write("%s %d %.6f %.6f\n" % (w, freq, hL, hR))
     fo.close()
 
 if __name__ == "__main__":
