@@ -30,24 +30,28 @@ def load_stopwords():
     return stopwords
 
 def decode(scores):
-    output = [0]
     _scores = [(0, 0, 0, 0), *scores, (0, 0, 0, 0)] # append SOS/EOS tokens
+    output_pos = [0]
+    output_pos.append(0)
     log()
-    output.append(0)
     for i in range(1, len(_scores) - 1):
         wL, w, wR = _scores[i - 1:i + 2]
-        if w[1] == 9999:
-            output.append(i - 1)
+        if w[1] in (0, 9999):
+            output_pos.append(i - 1)
             log("pos[%d] : %s" % (i - 1, "stopword"))
         if wL[1] < w[1] > wR[1]:
-            output.append(i - 1)
-            log("pos[%d] : left branching entropy" % (i - 1))
+            output_pos.append(i - 1)
+            log("pos[%d] : left BE" % (i - 1))
         if wL[2] < w[2] > wR[2]:
-            output.append(i + w[3] - 1)
-            log("pos[%d] : right branching entropy" % (i + w[3] - 1))
-    output.append(len(scores))
-    output = sorted(set(output))
-    return list(zip(output[:-1], output[1:]))
+            output_pos.append(i + w[3] - 1)
+            log("pos[%d] : right BE" % (i + w[3] - 1))
+    output_pos.append(len(scores))
+    output_pos = sorted(set(output_pos))
+    output_pos = list(zip(output_pos[:-1], output_pos[1:]))
+    output_iob = []
+    for i, j in output_pos:
+        output_iob.extend("I" if x else "B" for x in range(j - i))
+    return output_pos, output_iob
 
 def tokenize(model, stopwords):
     output = []
@@ -86,11 +90,12 @@ def tokenize(model, stopwords):
             log("score[%d] =" % i, (*scores[i][:3], w))
 
         tokens = line.split(" ")
-        _output = decode(scores)
-        _output = " ".join(sep.join(tokens[i:j]) for i, j in _output)
-        output.append(_output)
-
-        log("\noutput = %s\n" % _output)
+        output_pos, output_iob = decode(scores)
+        output_str = " ".join(sep.join(tokens[i:j]) for i, j in output_pos)
+        output.append((tokens, output_iob, output_str))
+        log("\ntokens =", tokens)
+        log("output_iob =", output_iob)
+        log("output_str = %s\n" % output_str)
 
     fo.close()
     return output
@@ -101,5 +106,9 @@ if __name__ == "__main__":
     model = load_model()
     stopwords = load_stopwords()
     output = tokenize(model, stopwords)
-    for line in output:
-        print(line)
+    for tokens, output_iob, output_str in output:
+        # string
+        # print(output_str)
+        # IOB format
+        print("\t".join(tokens))
+        print("\t".join(output_iob))
