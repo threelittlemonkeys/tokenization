@@ -20,11 +20,12 @@ def load_model():
 def load_stopwords():
     stopwords = dict()
     fo = open(sys.argv[2])
-    for w in fo:
-        w = w.strip()
-        w = w.lower()
+    for line in fo:
+        line = line.strip()
+        w, f = line.split("\t")
         w = tuple(w.split(" "))
-        stopwords[w] = True
+        if f == "True":
+            stopwords[w] = True
     fo.close()
     return stopwords
 

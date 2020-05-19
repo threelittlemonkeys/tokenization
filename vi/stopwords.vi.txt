@@ -1,3 +1,1942 @@
-để
-từ
-và
+a ha	True
+a lô	True
+ai	False
+ai ai	True
+ai nấy	True
+ai đó	True
+alô	True
+amen	True
+anh	False
+anh ấy	True
+ba	False
+ba ba	True
+ba bản	True
+ba cùng	True
+ba họ	True
+ba ngày	True
+ba ngôi	True
+ba tăng	True
+bao giờ	True
+bao lâu	True
+bao nhiêu	True
+bao nả	True
+bay biến	True
+biết	False
+biết bao	True
+biết bao nhiêu	True
+biết chắc	True
+biết chừng nào	True
+biết mình	True
+biết mấy	True
+biết thế	True
+biết trước	True
+biết việc	True
+biết đâu	True
+biết đâu chừng	True
+biết đâu đấy	True
+biết được	True
+buổi	False
+buổi làm	True
+buổi mới	True
+buổi ngày	True
+buổi sớm	True
+bà	False
+bà ấy	True
+bài	False
+bài bác	True
+bài bỏ	True
+bài cái	True
+bác	False
+bán	False
+bán cấp	True
+bán dạ	True
+bán thế	True
+bây bẩy	True
+bây chừ	True
+bây giờ	True
+bây nhiêu	True
+bèn	False
+béng	True
+bên	False
+bên bị	True
+bên có	True
+bên cạnh	True
+bông	False
+bước	False
+bước khỏi	True
+bước tới	True
+bước đi	True
+bạn	False
+bản	False
+bản bộ	True
+bản riêng	True
+bản thân	True
+bản ý	True
+bất chợt	True
+bất cứ	True
+bất giác	True
+bất kì	True
+bất kể	True
+bất kỳ	True
+bất luận	True
+bất ngờ	True
+bất nhược	True
+bất quá	True
+bất quá chỉ	True
+bất thình lình	True
+bất tử	True
+bất đồ	True
+bấy	False
+bấy chầy	True
+bấy chừ	True
+bấy giờ	True
+bấy lâu	True
+bấy lâu nay	True
+bấy nay	True
+bấy nhiêu	True
+bập bà bập bõm	True
+bập bõm	True
+bắt đầu	False
+bắt đầu từ	True
+bằng	False
+bằng cứ	True
+bằng không	True
+bằng người	True
+bằng nhau	True
+bằng như	True
+bằng nào	True
+bằng nấy	True
+bằng vào	True
+bằng được	True
+bằng ấy	True
+bển	True
+bệt	True
+bị	False
+bị chú	True
+bị vì	True
+bỏ	False
+bỏ bà	True
+bỏ cha	True
+bỏ cuộc	True
+bỏ không	True
+bỏ lại	True
+bỏ mình	True
+bỏ mất	True
+bỏ mẹ	True
+bỏ nhỏ	True
+bỏ quá	True
+bỏ ra	True
+bỏ riêng	True
+bỏ việc	True
+bỏ xa	True
+bỗng	False
+bỗng chốc	True
+bỗng dưng	True
+bỗng không	True
+bỗng nhiên	True
+bỗng nhưng	True
+bỗng thấy	True
+bỗng đâu	True
+bộ	False
+bộ thuộc	True
+bộ điều	True
+bội phần	True
+bớ	True
+bởi	False
+bởi ai	True
+bởi chưng	True
+bởi nhưng	True
+bởi sao	True
+bởi thế	True
+bởi thế cho nên	True
+bởi tại	True
+bởi vì	True
+bởi vậy	True
+bởi đâu	True
+bức	False
+cao	False
+cao lâu	True
+cao ráo	True
+cao răng	True
+cao sang	True
+cao số	True
+cao thấp	True
+cao thế	True
+cao xa	True
+cha	False
+cha chả	True
+chao ôi	True
+chia sẻ	True
+chiếc	True
+cho	False
+cho biết	True
+cho chắc	True
+cho hay	True
+cho nhau	True
+cho nên	True
+cho rằng	True
+cho rồi	True
+cho thấy	True
+cho tin	True
+cho tới	True
+cho tới khi	True
+cho về	True
+cho ăn	True
+cho đang	True
+cho được	True
+cho đến	True
+cho đến khi	True
+cho đến nỗi	True
+choa	True
+chu cha	True
+chui cha	True
+chung	False
+chung cho	True
+chung chung	True
+chung cuộc	True
+chung cục	True
+chung nhau	True
+chung qui	True
+chung quy	True
+chung quy lại	True
+chung ái	True
+chuyển	False
+chuyển tự	True
+chuyển đạt	True
+chuyện	False
+chuẩn bị	True
+chành chạnh	True
+chí chết	True
+chính	False
+chính bản	True
+chính giữa	True
+chính là	True
+chính thị	True
+chính điểm	True
+chùn chùn	True
+chùn chũn	True
+chú	False
+chú dẫn	True
+chú khách	True
+chú mày	True
+chú mình	True
+chúng	False
+chúng mình	True
+chúng ta	True
+chúng tôi	True
+chúng ông	True
+chăn chắn	True
+chăng	False
+chăng chắc	True
+chăng nữa	True
+chơi	False
+chơi họ	True
+chưa	False
+chưa bao giờ	True
+chưa chắc	True
+chưa có	True
+chưa cần	True
+chưa dùng	True
+chưa dễ	True
+chưa kể	True
+chưa tính	True
+chưa từng	True
+chầm chập	True
+chậc	True
+chắc	False
+chắc chắn	True
+chắc dạ	True
+chắc hẳn	True
+chắc lòng	True
+chắc người	True
+chắc vào	True
+chắc ăn	True
+chẳng lẽ	True
+chẳng những	True
+chẳng nữa	True
+chẳng phải	True
+chết nỗi	True
+chết thật	True
+chết tiệt	True
+chỉ	False
+chỉ chính	True
+chỉ có	True
+chỉ là	True
+chỉ tên	True
+chỉn	True
+chị	False
+chị bộ	True
+chị ấy	True
+chịu	False
+chịu chưa	True
+chịu lời	True
+chịu tốt	True
+chịu ăn	True
+chọn	False
+chọn bên	True
+chọn ra	True
+chốc chốc	True
+chớ	False
+chớ chi	True
+chớ gì	True
+chớ không	True
+chớ kể	True
+chớ như	True
+chợt	False
+chợt nghe	True
+chợt nhìn	True
+chủn	True
+chứ	True
+chứ ai	True
+chứ còn	True
+chứ gì	True
+chứ không	True
+chứ không phải	True
+chứ lại	True
+chứ lị	True
+chứ như	True
+chứ sao	True
+coi bộ	True
+coi mòi	True
+con	False
+con con	True
+con dạ	True
+con nhà	True
+con tính	True
+cu cậu	True
+cuối	False
+cuối cùng	True
+cuối điểm	True
+cuốn	False
+cuộc	False
+càng	False
+càng càng	True
+càng hay	True
+cá nhân	True
+các	False
+các cậu	True
+cách	False
+cách bức	True
+cách không	True
+cách nhau	True
+cách đều	True
+cái	False
+cái gì	True
+cái họ	True
+cái đã	True
+cái đó	True
+cái ấy	True
+câu hỏi	True
+cây	False
+cây nước	True
+còn	False
+còn như	True
+còn nữa	True
+còn thời gian	True
+còn về	True
+có	False
+có ai	True
+có chuyện	True
+có chăng	True
+có chăng là	True
+có chứ	True
+có cơ	True
+có dễ	True
+có họ	True
+có khi	True
+có ngày	True
+có người	True
+có nhiều	True
+có nhà	True
+có phải	True
+có số	True
+có tháng	True
+có thế	True
+có thể	True
+có vẻ	True
+có ý	True
+có ăn	True
+có điều	True
+có điều kiện	True
+có đáng	True
+có đâu	True
+có được	True
+cóc khô	True
+cô	False
+cô mình	True
+cô quả	True
+cô tăng	True
+cô ấy	True
+công nhiên	True
+cùng	False
+cùng chung	True
+cùng cực	True
+cùng nhau	True
+cùng tuổi	True
+cùng tột	True
+cùng với	True
+cùng ăn	True
+căn	False
+căn cái	True
+căn cắt	True
+căn tính	True
+cũng	False
+cũng như	True
+cũng nên	True
+cũng thế	True
+cũng vậy	True
+cũng vậy thôi	True
+cũng được	True
+cơ	False
+cơ chỉ	True
+cơ chừng	True
+cơ cùng	True
+cơ dẫn	True
+cơ hồ	True
+cơ hội	True
+cơ mà	True
+cơn	False
+cả	False
+cả nghe	True
+cả nghĩ	True
+cả ngày	True
+cả người	True
+cả nhà	True
+cả năm	True
+cả thảy	True
+cả thể	True
+cả tin	True
+cả ăn	True
+cả đến	True
+cảm thấy	True
+cảm ơn	True
+cấp	False
+cấp số	True
+cấp trực tiếp	True
+cần	False
+cần cấp	True
+cần gì	True
+cần số	True
+cật lực	True
+cật sức	True
+cậu	False
+cổ lai	True
+cụ thể	True
+cụ thể là	True
+cụ thể như	True
+của	False
+của ngọt	True
+của tin	True
+cứ	True
+cứ như	True
+cứ việc	True
+cứ điểm	True
+cực lực	True
+do	False
+do vì	True
+do vậy	True
+do đó	True
+duy	False
+duy chỉ	True
+duy có	True
+dài	False
+dài lời	True
+dài ra	True
+dành	False
+dành dành	True
+dào	True
+dì	False
+dù	False
+dù cho	True
+dù dì	True
+dù gì	True
+dù rằng	True
+dù sao	True
+dùng	False
+dùng cho	True
+dùng hết	True
+dùng làm	True
+dùng đến	True
+dưới	True
+dưới nước	True
+dạ	False
+dạ bán	True
+dạ con	True
+dạ dài	True
+dạ dạ	True
+dạ khách	True
+dần dà	True
+dần dần	True
+dầu sao	True
+dẫn	False
+dẫu	False
+dẫu mà	True
+dẫu rằng	True
+dẫu sao	True
+dễ	False
+dễ dùng	True
+dễ gì	True
+dễ khiến	True
+dễ nghe	True
+dễ ngươi	True
+dễ như chơi	True
+dễ sợ	True
+dễ sử dụng	True
+dễ thường	True
+dễ thấy	True
+dễ ăn	True
+dễ đâu	True
+dở chừng	True
+dữ	False
+dữ cách	True
+em	False
+em em	True
+giá trị	True
+giá trị thực tế	True
+giảm	False
+giảm chính	True
+giảm thấp	True
+giảm thế	True
+giống	False
+giống người	True
+giống nhau	True
+giống như	True
+giờ	False
+giờ lâu	True
+giờ này	True
+giờ đi	True
+giờ đây	True
+giờ đến	True
+giữ	False
+giữ lấy	True
+giữ ý	True
+giữa	False
+giữa lúc	True
+gây	False
+gây cho	True
+gây giống	True
+gây ra	True
+gây thêm	True
+gì	False
+gì gì	True
+gì đó	True
+gần	False
+gần bên	True
+gần hết	True
+gần ngày	True
+gần như	True
+gần xa	True
+gần đây	True
+gần đến	True
+gặp	False
+gặp khó khăn	True
+gặp phải	True
+gồm	True
+hay	False
+hay biết	True
+hay hay	True
+hay không	True
+hay là	True
+hay làm	True
+hay nhỉ	True
+hay nói	True
+hay sao	True
+hay tin	True
+hay đâu	True
+hiểu	False
+hiện nay	True
+hiện tại	True
+hoàn toàn	True
+hoặc	False
+hoặc là	True
+hãy	False
+hãy còn	True
+hơn	False
+hơn cả	True
+hơn hết	True
+hơn là	True
+hơn nữa	True
+hơn trước	True
+hầu hết	True
+hết	False
+hết chuyện	True
+hết cả	True
+hết của	True
+hết nói	True
+hết ráo	True
+hết rồi	True
+hết ý	True
+họ	False
+họ gần	True
+họ xa	True
+hỏi	False
+hỏi lại	True
+hỏi xem	True
+hỏi xin	True
+hỗ trợ	True
+khi	False
+khi khác	True
+khi không	True
+khi nào	True
+khi nên	True
+khi trước	True
+khiến	False
+khoảng	False
+khoảng cách	True
+khoảng không	True
+khá	False
+khá tốt	True
+khác	False
+khác gì	True
+khác khác	True
+khác nhau	True
+khác nào	True
+khác thường	True
+khác xa	True
+khách	False
+khó	False
+khó biết	True
+khó chơi	True
+khó khăn	True
+khó làm	True
+khó mở	True
+khó nghe	True
+khó nghĩ	True
+khó nói	True
+khó thấy	True
+khó tránh	True
+không	False
+không ai	True
+không bao giờ	True
+không bao lâu	True
+không biết	True
+không bán	True
+không chỉ	True
+không còn	True
+không có	True
+không có gì	True
+không cùng	True
+không cần	True
+không cứ	True
+không dùng	True
+không gì	True
+không hay	True
+không khỏi	True
+không kể	True
+không ngoài	True
+không nhận	True
+không những	True
+không phải	True
+không phải không	True
+không thể	True
+không tính	True
+không điều kiện	True
+không được	True
+không đầy	True
+không để	True
+khẳng định	True
+khỏi	False
+khỏi nói	True
+kể	False
+kể cả	True
+kể như	True
+kể tới	True
+kể từ	True
+liên quan	True
+loại	False
+loại từ	True
+luôn	False
+luôn cả	True
+luôn luôn	True
+luôn tay	True
+là	False
+là cùng	True
+là là	True
+là nhiều	True
+là phải	True
+là thế nào	True
+là vì	True
+là ít	True
+làm	False
+làm bằng	True
+làm cho	True
+làm dần dần	True
+làm gì	True
+làm lòng	True
+làm lại	True
+làm lấy	True
+làm mất	True
+làm ngay	True
+làm như	True
+làm nên	True
+làm ra	True
+làm riêng	True
+làm sao	True
+làm theo	True
+làm thế nào	True
+làm tin	True
+làm tôi	True
+làm tăng	True
+làm tại	True
+làm tắp lự	True
+làm vì	True
+làm đúng	True
+làm được	True
+lâu	False
+lâu các	True
+lâu lâu	True
+lâu nay	True
+lâu ngày	True
+lên	False
+lên cao	True
+lên cơn	True
+lên mạnh	True
+lên ngôi	True
+lên nước	True
+lên số	True
+lên xuống	True
+lên đến	True
+lòng	False
+lòng không	True
+lúc	False
+lúc khác	True
+lúc lâu	True
+lúc nào	True
+lúc này	True
+lúc sáng	True
+lúc trước	True
+lúc đi	True
+lúc đó	True
+lúc đến	True
+lúc ấy	True
+lý do	True
+lượng	False
+lượng cả	True
+lượng số	True
+lượng từ	True
+lại	False
+lại bộ	True
+lại cái	True
+lại còn	True
+lại giống	True
+lại làm	True
+lại người	True
+lại nói	True
+lại nữa	True
+lại quả	True
+lại thôi	True
+lại ăn	True
+lại đây	True
+lấy	False
+lấy có	True
+lấy cả	True
+lấy giống	True
+lấy làm	True
+lấy lý do	True
+lấy lại	True
+lấy ra	True
+lấy ráo	True
+lấy sau	True
+lấy số	True
+lấy thêm	True
+lấy thế	True
+lấy vào	True
+lấy xuống	True
+lấy được	True
+lấy để	True
+lần	False
+lần khác	True
+lần lần	True
+lần nào	True
+lần này	True
+lần sang	True
+lần sau	True
+lần theo	True
+lần trước	True
+lần tìm	True
+lớn	False
+lớn lên	True
+lớn nhỏ	True
+lời	False
+lời chú	True
+lời nói	True
+mang	False
+mang lại	True
+mang mang	True
+mang nặng	True
+mang về	True
+muốn	False
+mà	False
+mà cả	True
+mà không	True
+mà lại	True
+mà thôi	True
+mà vẫn	True
+mình	False
+mạnh	False
+mất	False
+mất còn	True
+mọi	False
+mọi giờ	True
+mọi khi	True
+mọi lúc	True
+mọi người	True
+mọi nơi	True
+mọi sự	True
+mọi thứ	True
+mọi việc	True
+mối	False
+mỗi	False
+mỗi lúc	True
+mỗi lần	True
+mỗi một	True
+mỗi ngày	True
+mỗi người	True
+một	False
+một cách	True
+một cơn	True
+một khi	True
+một lúc	True
+một số	True
+một vài	True
+một ít	True
+mới	False
+mới hay	True
+mới rồi	True
+mới đây	True
+mở	False
+mở mang	True
+mở nước	True
+mở ra	True
+mợ	True
+mức	False
+nay	False
+ngay	False
+ngay bây giờ	True
+ngay cả	True
+ngay khi	True
+ngay khi đến	True
+ngay lúc	True
+ngay lúc này	True
+ngay lập tức	True
+ngay thật	True
+ngay tức khắc	True
+ngay tức thì	True
+ngay từ	True
+nghe	False
+nghe chừng	True
+nghe hiểu	True
+nghe không	True
+nghe lại	True
+nghe nhìn	True
+nghe như	True
+nghe nói	True
+nghe ra	True
+nghe rõ	True
+nghe thấy	True
+nghe tin	True
+nghe trực tiếp	True
+nghe đâu	True
+nghe đâu như	True
+nghe được	True
+nghen	True
+nghiễm nhiên	True
+nghĩ	False
+nghĩ lại	True
+nghĩ ra	True
+nghĩ tới	True
+nghĩ xa	True
+nghĩ đến	True
+nghỉm	False
+ngoài	False
+ngoài này	True
+ngoài ra	True
+ngoài xa	True
+ngoải	False
+nguồn	True
+ngày	False
+ngày càng	True
+ngày cấp	True
+ngày giờ	True
+ngày ngày	True
+ngày nào	True
+ngày này	True
+ngày nọ	True
+ngày qua	True
+ngày rày	True
+ngày tháng	True
+ngày xưa	True
+ngày xửa	True
+ngày đến	True
+ngày ấy	True
+ngôi	False
+ngôi nhà	True
+ngôi thứ	True
+ngõ hầu	True
+ngăn ngắt	True
+ngươi	False
+người	False
+người hỏi	True
+người khác	True
+người khách	True
+người mình	True
+người nghe	True
+người người	True
+người nhận	True
+ngọn	False
+ngọn nguồn	True
+ngọt	False
+ngồi	False
+ngồi bệt	True
+ngồi không	True
+ngồi sau	True
+ngồi trệt	True
+ngộ nhỡ	True
+nhanh	False
+nhanh lên	True
+nhanh tay	True
+nhau	False
+nhiên hậu	True
+nhiều	False
+nhiều ít	True
+nhiệt liệt	True
+nhung nhăng	True
+nhà	False
+nhà chung	True
+nhà khó	True
+nhà làm	True
+nhà ngoài	True
+nhà ngươi	True
+nhà tôi	True
+nhà việc	True
+nhân dịp	True
+nhân tiện	True
+nhé	False
+nhìn	False
+nhìn chung	True
+nhìn lại	True
+nhìn nhận	True
+nhìn theo	True
+nhìn thấy	True
+nhìn xuống	True
+nhóm	False
+nhón nhén	True
+như	False
+như ai	True
+như chơi	True
+như không	True
+như là	True
+như nhau	True
+như quả	True
+như sau	True
+như thường	True
+như thế	True
+như thế nào	True
+như thể	True
+như trên	True
+như trước	True
+như tuồng	True
+như vậy	True
+như ý	True
+nhưng	False
+nhưng mà	True
+nhược bằng	True
+nhất	False
+nhất loạt	True
+nhất luật	True
+nhất là	True
+nhất mực	True
+nhất nhất	True
+nhất quyết	True
+nhất sinh	True
+nhất thiết	True
+nhất thì	True
+nhất tâm	True
+nhất tề	True
+nhất đán	True
+nhất định	True
+nhận	False
+nhận biết	True
+nhận họ	True
+nhận làm	True
+nhận nhau	True
+nhận ra	True
+nhận thấy	True
+nhận việc	True
+nhận được	True
+nhằm	False
+nhằm khi	True
+nhằm lúc	True
+nhằm vào	True
+nhằm để	True
+nhỉ	True
+nhỏ	False
+nhỏ người	True
+nhớ	False
+nhớ bập bõm	True
+nhớ lại	True
+nhớ lấy	True
+nhớ ra	True
+nhờ	False
+nhờ chuyển	True
+nhờ có	True
+nhờ nhờ	True
+nhờ đó	True
+nhỡ ra	True
+những	False
+những ai	True
+những khi	True
+những là	True
+những lúc	True
+những muốn	True
+những như	True
+nào	False
+nào cũng	True
+nào hay	True
+nào là	True
+nào phải	True
+nào đâu	True
+nào đó	True
+này	False
+này nọ	True
+nên	False
+nên chi	True
+nên chăng	True
+nên làm	True
+nên người	True
+nên tránh	True
+nó	False
+nóc	False
+nói	False
+nói bông	True
+nói chung	True
+nói khó	True
+nói là	True
+nói lên	True
+nói lại	True
+nói nhỏ	True
+nói phải	True
+nói qua	True
+nói ra	True
+nói riêng	True
+nói rõ	True
+nói thêm	True
+nói thật	True
+nói toẹt	True
+nói trước	True
+nói tốt	True
+nói với	True
+nói xa	True
+nói ý	True
+nói đến	True
+nói đủ	True
+năm	False
+năm tháng	True
+nơi	False
+nơi nơi	True
+nước	False
+nước bài	True
+nước cùng	True
+nước lên	True
+nước nặng	True
+nước quả	True
+nước xuống	True
+nước ăn	True
+nước đến	True
+nấy	False
+nặng	False
+nặng căn	True
+nặng mình	True
+nặng về	True
+nếu	False
+nếu có	True
+nếu cần	True
+nếu không	True
+nếu mà	True
+nếu như	True
+nếu thế	True
+nếu vậy	True
+nếu được	True
+nền	False
+nọ	True
+nớ	True
+nức nở	True
+nữa	False
+nữa khi	True
+nữa là	True
+nữa rồi	True
+oai oái	True
+oái	False
+pho	False
+phè	False
+phè phè	True
+phía	False
+phía bên	True
+phía bạn	True
+phía dưới	True
+phía sau	True
+phía trong	True
+phía trên	True
+phía trước	True
+phóc	True
+phót	True
+phù hợp	True
+phăn phắt	True
+phương chi	True
+phải	False
+phải biết	True
+phải chi	True
+phải chăng	True
+phải cách	True
+phải cái	True
+phải giờ	True
+phải khi	True
+phải không	True
+phải lại	True
+phải lời	True
+phải người	True
+phải như	True
+phải rồi	True
+phải tay	True
+phần	False
+phần lớn	True
+phần nhiều	True
+phần nào	True
+phần sau	True
+phần việc	True
+phắt	False
+phỉ phui	True
+phỏng	False
+phỏng như	True
+phỏng nước	True
+phỏng theo	True
+phỏng tính	True
+phốc	False
+phụt	False
+phứt	True
+qua	False
+qua chuyện	True
+qua khỏi	True
+qua lại	True
+qua lần	True
+qua ngày	True
+qua tay	True
+qua thì	True
+qua đi	True
+quan trọng	False
+quan trọng vấn đề	True
+quan tâm	True
+quay	False
+quay bước	True
+quay lại	True
+quay số	True
+quay đi	True
+quá	False
+quá bán	True
+quá bộ	True
+quá giờ	True
+quá lời	True
+quá mức	True
+quá nhiều	True
+quá tay	True
+quá thì	True
+quá tin	True
+quá trình	True
+quá tuổi	True
+quá đáng	True
+quá ư	True
+quả	False
+quả là	True
+quả thật	True
+quả thế	True
+quả vậy	True
+quận	False
+ra	False
+ra bài	False
+ra bộ	True
+ra chơi	True
+ra gì	True
+ra lại	True
+ra lời	True
+ra ngôi	True
+ra người	True
+ra sao	True
+ra tay	True
+ra vào	True
+ra ý	True
+ra điều	True
+ra đây	True
+ren rén	True
+riu ríu	True
+riêng	False
+riêng từng	True
+riệt	False
+rày	False
+ráo	False
+ráo cả	True
+ráo nước	True
+ráo trọi	True
+rén	False
+rén bước	True
+rích	False
+rón rén	True
+rõ	False
+rõ là	True
+rõ thật	True
+rút cục	True
+răng	False
+răng răng	True
+rất	False
+rất lâu	True
+rằng	False
+rằng là	True
+rốt cuộc	True
+rốt cục	True
+rồi	False
+rồi nữa	True
+rồi ra	True
+rồi sao	True
+rồi sau	True
+rồi tay	True
+rồi thì	True
+rồi xem	True
+rồi đây	True
+rứa	False
+sa sả	True
+sang	False
+sang năm	True
+sang sáng	True
+sang tay	True
+sao	False
+sao bản	True
+sao bằng	True
+sao cho	True
+sao vậy	True
+sao đang	True
+sau	False
+sau chót	True
+sau cuối	True
+sau cùng	True
+sau hết	True
+sau này	True
+sau nữa	True
+sau sau	True
+sau đây	True
+sau đó	True
+so	False
+so với	True
+song le	True
+suýt	False
+suýt nữa	True
+sáng	False
+sáng ngày	True
+sáng rõ	True
+sáng thế	True
+sáng ý	True
+sì	False
+sì sì	True
+sất	True
+sắp	False
+sắp đặt	True
+sẽ	False
+sẽ biết	True
+sẽ hay	True
+số	False
+số cho biết	True
+số cụ thể	True
+số loại	True
+số là	True
+số người	True
+số phần	True
+số thiếu	True
+sốt sột	True
+sớm	False
+sớm ngày	True
+sở dĩ	True
+sử dụng	True
+sự	False
+sự thế	True
+sự việc	True
+tanh	False
+tanh tanh	True
+tay	False
+tay quay	True
+tha hồ	False
+tha hồ chơi	True
+tha hồ ăn	True
+than ôi	True
+thanh	False
+thanh ba	True
+thanh chuyển	True
+thanh không	True
+thanh thanh	True
+thanh tính	True
+thanh điều kiện	True
+thanh điểm	True
+thay đổi	True
+thay đổi tình trạng	True
+theo	False
+theo bước	True
+theo như	True
+theo tin	True
+thi thoảng	True
+thiếu	False
+thiếu gì	True
+thiếu điểm	True
+thoạt	False
+thoạt nghe	True
+thoạt nhiên	True
+thoắt	False
+thuần	False
+thuần ái	True
+thuộc	False
+thuộc bài	True
+thuộc cách	True
+thuộc lại	True
+thuộc từ	True
+thà	False
+thà là	True
+thà rằng	True
+thành ra	True
+thành thử	True
+thái quá	True
+tháng	False
+tháng ngày	True
+tháng năm	True
+tháng tháng	True
+thêm	False
+thêm chuyện	True
+thêm giờ	True
+thêm vào	True
+thì	False
+thì giờ	True
+thì là	True
+thì phải	True
+thì ra	True
+thì thôi	True
+thình lình	True
+thích	False
+thích cứ	True
+thích thuộc	True
+thích tự	True
+thích ý	True
+thím	True
+thôi	False
+thôi việc	True
+thúng thắng	True
+thương ôi	True
+thường	False
+thường bị	True
+thường hay	True
+thường khi	True
+thường số	True
+thường sự	True
+thường thôi	True
+thường thường	True
+thường tính	True
+thường tại	True
+thường xuất hiện	True
+thường đến	True
+thảo hèn	True
+thảo nào	True
+thấp	False
+thấp cơ	True
+thấp thỏm	True
+thấp xuống	True
+thấy	False
+thấy tháng	True
+thẩy	True
+thậm	False
+thậm chí	True
+thậm cấp	True
+thậm từ	True
+thật	False
+thật chắc	True
+thật là	True
+thật lực	True
+thật quả	True
+thật ra	True
+thật sự	True
+thật thà	True
+thật tốt	True
+thật vậy	True
+thế	False
+thế chuẩn bị	True
+thế là	True
+thế lại	True
+thế mà	True
+thế nào	True
+thế nên	True
+thế ra	True
+thế sự	True
+thế thì	True
+thế thôi	True
+thế thường	True
+thế thế	True
+thế à	True
+thế đó	True
+thếch	True
+thỉnh thoảng	True
+thỏm	False
+thốc	False
+thốc tháo	True
+thốt	False
+thốt nhiên	True
+thốt nói	True
+thốt thôi	True
+thộc	True
+thời gian	False
+thời gian sử dụng	True
+thời gian tính	True
+thời điểm	True
+thục mạng	True
+thứ	False
+thứ bản	True
+thứ đến	True
+thửa	False
+thực hiện	True
+thực hiện đúng	True
+thực ra	True
+thực sự	True
+thực tế	True
+thực vậy	True
+tin	False
+tin thêm	True
+tin vào	True
+tiếp theo	True
+tiếp tục	True
+tiếp đó	True
+tiện thể	True
+toà	False
+toé khói	True
+toẹt	False
+trong	False
+trong khi	True
+trong lúc	True
+trong mình	True
+trong ngoài	True
+trong này	True
+trong số	True
+trong vùng	True
+trong đó	True
+trong ấy	True
+tránh	False
+tránh khỏi	True
+tránh ra	True
+tránh tình trạng	True
+tránh xa	True
+trên	False
+trên bộ	True
+trên dưới	True
+trước	False
+trước hết	True
+trước khi	True
+trước kia	True
+trước nay	True
+trước ngày	True
+trước nhất	True
+trước sau	True
+trước tiên	True
+trước tuổi	True
+trước đây	True
+trước đó	True
+trả	False
+trả của	True
+trả lại	True
+trả ngay	True
+trả trước	True
+trếu tráo	True
+trển	True
+trệt	False
+trệu trạo	True
+trỏng	True
+trời đất ơi	True
+trở thành	True
+trừ phi	True
+trực tiếp	True
+trực tiếp làm	True
+tuy	False
+tuy có	True
+tuy là	True
+tuy nhiên	True
+tuy rằng	True
+tuy thế	True
+tuy vậy	True
+tuy đã	True
+tuyệt nhiên	True
+tuần tự	True
+tuốt luốt	True
+tuốt tuồn tuột	True
+tuốt tuột	True
+tuổi	False
+tuổi cả	True
+tuổi tôi	True
+tà tà	True
+tên	False
+tên chính	True
+tên cái	True
+tên họ	True
+tên tự	True
+tênh	False
+tênh tênh	True
+tìm	False
+tìm bạn	True
+tìm cách	True
+tìm hiểu	True
+tìm ra	True
+tìm việc	True
+tình trạng	True
+tính	False
+tính cách	True
+tính căn	True
+tính người	True
+tính phỏng	True
+tính từ	True
+tít mù	True
+tò te	True
+tôi	False
+tôi con	True
+tông tốc	True
+tù tì	True
+tăm tắp	True
+tăng	False
+tăng chúng	True
+tăng cấp	True
+tăng giảm	True
+tăng thêm	True
+tăng thế	True
+tại	False
+tại lòng	True
+tại nơi	True
+tại sao	True
+tại tôi	True
+tại vì	True
+tại đâu	True
+tại đây	True
+tại đó	True
+tạo	False
+tạo cơ hội	True
+tạo nên	True
+tạo ra	True
+tạo ý	True
+tạo điều kiện	True
+tấm	False
+tấm bản	True
+tấm các	True
+tấn	False
+tấn tới	True
+tất cả	True
+tất cả bao nhiêu	True
+tất thảy	True
+tất tần tật	True
+tất tật	True
+tập trung	True
+tắp	False
+tắp lự	True
+tắp tắp	True
+tọt	True
+tỏ ra	True
+tỏ vẻ	True
+tốc tả	True
+tối ư	True
+tốt	False
+tốt bạn	True
+tốt bộ	True
+tốt hơn	True
+tốt mối	True
+tốt ngày	True
+tột	False
+tột cùng	True
+tớ	False
+tới	False
+tới gần	True
+tới mức	True
+tới nơi	True
+tới thì	True
+tức thì	True
+tức tốc	True
+từ	False
+từ căn	True
+từ giờ	True
+từ khi	True
+từ loại	True
+từ nay	True
+từ thế	True
+từ tính	True
+từ tại	True
+từ từ	True
+từ ái	True
+từ điều	True
+từ đó	True
+từ ấy	True
+từng	False
+từng cái	True
+từng giờ	True
+từng nhà	True
+từng phần	True
+từng thời gian	True
+từng đơn vị	True
+từng ấy	True
+tự	False
+tự cao	True
+tự khi	True
+tự lượng	True
+tự tính	True
+tự tạo	True
+tự vì	True
+tự ý	True
+tự ăn	True
+tựu trung	True
+veo	False
+veo veo	True
+việc	False
+việc gì	True
+vung thiên địa	True
+vung tàn tán	True
+vung tán tàn	True
+và	False
+vài	False
+vài ba	True
+vài người	True
+vài nhà	True
+vài nơi	True
+vài tên	True
+vài điều	True
+vào	False
+vào gặp	True
+vào khoảng	True
+vào lúc	True
+vào vùng	True
+vào đến	True
+vâng	False
+vâng chịu	True
+vâng dạ	True
+vâng vâng	True
+vâng ý	True
+vèo	False
+vèo vèo	True
+vì	False
+vì chưng	True
+vì rằng	True
+vì sao	True
+vì thế	True
+vì vậy	True
+ví bằng	True
+ví dù	True
+ví phỏng	True
+ví thử	True
+vô hình trung	True
+vô kể	True
+vô luận	True
+vô vàn	True
+vùng	False
+vùng lên	True
+vùng nước	True
+văng tê	True
+vượt	False
+vượt khỏi	True
+vượt quá	True
+vạn nhất	True
+vả chăng	True
+vả lại	True
+vấn đề	True
+vấn đề quan trọng	True
+vẫn	False
+vẫn thế	True
+vậy	False
+vậy là	True
+vậy mà	True
+vậy nên	True
+vậy ra	True
+vậy thì	True
+vậy ư	True
+về	False
+về không	True
+về nước	True
+về phần	True
+về sau	True
+về tay	True
+vị trí	True
+vị tất	True
+vốn dĩ	True
+với	False
+với lại	True
+với nhau	True
+vở	False
+vụt	False
+vừa	False
+vừa khi	True
+vừa lúc	True
+vừa mới	True
+vừa qua	True
+vừa rồi	True
+vừa vừa	True
+xa	False
+xa cách	True
+xa gần	True
+xa nhà	True
+xa tanh	True
+xa tắp	True
+xa xa	True
+xa xả	True
+xem	False
+xem lại	True
+xem ra	True
+xem số	True
+xin	False
+xin gặp	True
+xin vâng	True
+xiết bao	True
+xon xón	True
+xoành xoạch	True
+xoét	False
+xoẳn	True
+xoẹt	False
+xuất hiện	True
+xuất kì bất ý	True
+xuất kỳ bất ý	True
+xuể	False
+xuống	False
+xăm xúi	True
+xăm xăm	True
+xăm xắm	True
+xảy ra	True
+xềnh xệch	True
+xệp	False
+xử lý	False
+yêu cầu	False
+à	False
+à này	True
+à ơi	True
+ào	False
+ào vào	True
+ào ào	True
+á	False
+á à	True
+ái	False
+ái chà	True
+ái dà	True
+áng	False
+áng như	True
+âu là	True
+ít	False
+ít biết	True
+ít có	True
+ít hơn	True
+ít khi	True
+ít lâu	True
+ít nhiều	True
+ít nhất	True
+ít nữa	True
+ít quá	True
+ít ra	True
+ít thôi	True
+ít thấy	True
+ô hay	True
+ô hô	True
+ô kê	True
+ô kìa	True
+ôi chao	True
+ôi thôi	True
+ông	False
+ông nhỏ	True
+ông tạo	True
+ông từ	True
+ông ấy	True
+ông ổng	True
+úi	True
+úi chà	True
+úi dào	True
+ý	False
+ý chừng	True
+ý da	True
+ý hoặc	True
+ăn	False
+ăn chung	True
+ăn chắc	True
+ăn chịu	True
+ăn cuộc	True
+ăn hết	True
+ăn hỏi	True
+ăn làm	True
+ăn người	True
+ăn ngồi	True
+ăn quá	True
+ăn riêng	True
+ăn sáng	True
+ăn tay	True
+ăn trên	True
+ăn về	True
+đang	False
+đang tay	True
+đang thì	True
+điều	False
+điều gì	True
+điều kiện	True
+điểm	False
+điểm chính	True
+điểm gặp	True
+điểm đầu tiên	True
+đành đạch	True
+đáng	False
+đáng kể	True
+đáng lí	True
+đáng lý	True
+đáng lẽ	True
+đáng số	True
+đánh giá	True
+đánh đùng	False
+đáo để	True
+đâu	False
+đâu có	True
+đâu cũng	True
+đâu như	True
+đâu nào	True
+đâu phải	True
+đâu đâu	True
+đâu đây	True
+đâu đó	True
+đây	False
+đây này	True
+đây rồi	True
+đây đó	True
+đã	False
+đã hay	True
+đã không	True
+đã là	True
+đã lâu	True
+đã thế	True
+đã vậy	True
+đã đủ	True
+đó	True
+đó đây	True
+đúng	False
+đúng ngày	True
+đúng ra	True
+đúng tuổi	True
+đúng với	True
+đơn vị	True
+đưa	False
+đưa cho	True
+đưa chuyện	True
+đưa em	True
+đưa ra	True
+đưa tay	True
+đưa tin	True
+đưa tới	True
+đưa vào	True
+đưa về	True
+đưa xuống	True
+đưa đến	True
+được	False
+được cái	True
+được lời	True
+được nước	True
+được tin	True
+đại loại	True
+đại nhân	True
+đại phàm	True
+đại để	True
+đạt	False
+đảm bảo	True
+đầu tiên	True
+đầy	False
+đầy năm	True
+đầy phè	True
+đầy tuổi	True
+đặc biệt	True
+đặt	False
+đặt làm	True
+đặt mình	True
+đặt mức	True
+đặt ra	True
+đặt trước	True
+đặt để	True
+đến	False
+đến bao giờ	True
+đến cùng	True
+đến cùng cực	True
+đến cả	True
+đến giờ	True
+đến gần	True
+đến hay	True
+đến khi	True
+đến lúc	True
+đến lời	True
+đến nay	True
+đến ngày	True
+đến nơi	True
+đến nỗi	True
+đến thì	True
+đến thế	True
+đến tuổi	True
+đến xem	True
+đến điều	True
+đến đâu	True
+đều	False
+đều bước	True
+đều nhau	True
+đều đều	True
+để	False
+để cho	True
+để giống	True
+để không	True
+để lòng	True
+để lại	True
+để mà	True
+để phần	True
+để được	True
+để đến nỗi	True
+đối với	True
+đồng thời	True
+đủ	False
+đủ dùng	True
+đủ nơi	True
+đủ số	True
+đủ điều	True
+đủ điểm	True
+ơ	False
+ơ hay	True
+ơ kìa	True
+ơi	False
+ơi là	True
+ư	True
+ạ	True
+ạ ơi	True
+ấy	True
+ấy là	True
+ầu ơ	True
+ắt	False
+ắt hẳn	True
+ắt là	True
+ắt phải	True
+ắt thật	True
+ối dào	True
+ối giời	True
+ối giời ơi	True
+ồ	False
+ồ ồ	True
+ổng	True
+ớ	True
+ớ này	True
+ờ	True
+ờ ờ	True
+ở	False
+ở lại	True
+ở như	True
+ở nhờ	True
+ở năm	True
+ở trên	True
+ở vào	True
+ở đây	True
+ở đó	True
+ở được	True
+ủa	True
+ứ hự	True
+ứ ừ	True
+ừ	False
+ừ nhé	True
+ừ thì	True
+ừ ào	True
+ừ ừ	True
+ử	True
