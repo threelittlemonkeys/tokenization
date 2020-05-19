@@ -14,6 +14,11 @@ from parameters import *
 RE_NON_ALNUM = re.compile("([^0-9A-Za-z\u00C0-\u024F\u0300-\u036F\u1E00-\u1EFF\uAC00-\uD7AF]+)")
 RE_CJK = re.compile("([\u4E00-\u9FFF\uAC00-\uD7AF])")
 
+def log(*x):
+    if not DEBUG:
+        return
+    print(*x)
+
 def normalize(x, lc = True):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
     if LANG in ("ja", "ko", "zh"):
