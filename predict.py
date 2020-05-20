@@ -96,6 +96,7 @@ def tokenize(model, stopwords):
         log("\ntokens =", tokens)
         log("output_iob =", output_iob)
         log("output_str = %s\n" % output_str)
+        if DEBUG: input()
 
     fo.close()
     return output

@@ -1594,7 +1594,7 @@ việc gì	True
 vung thiên địa	True
 vung tàn tán	True
 vung tán tàn	True
-và	False
+và	True
 vài	False
 vài ba	True
 vài người	True
