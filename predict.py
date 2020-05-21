@@ -31,22 +31,28 @@ def load_stopwords():
 
 def decode(scores):
     _scores = [(0, 0, 0, 0), *scores, (0, 0, 0, 0)] # append SOS/EOS tokens
-    output_pos = [0]
-    output_pos.append(0)
-    log()
-    for i in range(1, len(_scores) - 1):
-        wL, w, wR = _scores[i - 1:i + 2]
-        if w[1] in (0, 9999):
-            output_pos.append(i - 1)
-            log("pos[%d] : %s" % (i - 1, "stopword"))
+    output_pos = set()
+    output_pos.add(0)
+    printl()
+    for i in range(len(scores)):
+        wL, w, wR = _scores[i:i + 3]
+        if w[1] == 0:
+            if i < max(output_pos):
+                continue
+            output_pos.add(i) # left word boundary
+            output_pos.add(i + 1) # right word boundary
+            printl("pos[%d] : unknown" % i)
+        if w[1] == 9999:
+            output_pos.add(i)
+            printl("pos[%d] : stopword" % i)
         if wL[1] < w[1] > wR[1]:
-            output_pos.append(i - 1)
-            log("pos[%d] : left BE" % (i - 1))
+            output_pos.add(i)
+            printl("pos[%d] : left BE" % i)
         if wL[2] < w[2] > wR[2]:
-            output_pos.append(i + w[3] - 1)
-            log("pos[%d] : right BE" % (i + w[3] - 1))
-    output_pos.append(len(scores))
-    output_pos = sorted(set(output_pos))
+            output_pos.add(i + w[3])
+            printl("pos[%d] : right BE" % (i + w[3]))
+    output_pos.add(len(scores))
+    output_pos = sorted(output_pos)
     output_pos = list(zip(output_pos[:-1], output_pos[1:]))
     output_iob = []
     for i, j in output_pos:
@@ -64,7 +70,7 @@ def tokenize(model, stopwords):
     fo = open(sys.argv[3])
     for line in fo:
         line = line.strip()
-        log("line = %s\n" % line)
+        printl("line = %s\n" % line)
         line = normalize(line, False)
         if LANG == "vi":
             line = re.sub("_", "__", line)
@@ -87,15 +93,15 @@ def tokenize(model, stopwords):
                 _scores.append((0, 0, 0, 1))
             scores[i] = max(_scores, key = lambda x: (sum(x[1:3]), x[3]))
             w = sep.join(tokens[i:i + scores[i][3]])
-            log("score[%d] =" % i, (*scores[i][:3], w))
+            printl("score[%d] =" % i, (*scores[i][:3], w))
 
         tokens = line.split(" ")
         output_pos, output_iob = decode(scores)
         output_str = " ".join(sep.join(tokens[i:j]) for i, j in output_pos)
         output.append((tokens, output_iob, output_str))
-        log("\ntokens =", tokens)
-        log("output_iob =", output_iob)
-        log("output_str = %s\n" % output_str)
+        printl("\ntokens =", tokens)
+        printl("output_iob =", output_iob)
+        printl("output_str = %s\n" % output_str)
         if DEBUG: input()
 
     fo.close()
