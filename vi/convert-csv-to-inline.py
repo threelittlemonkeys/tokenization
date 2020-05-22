@@ -10,15 +10,15 @@ data_x = data[0::2]
 data_y = data[1::2]
 
 for line_x, line_y in zip(data_x, data_y):
-    line_x = re.split("[\t ]", line_x)
-    line_y = re.split("[\t ]", line_y)
+    tokens_x = re.split("[\t ]", line_x)
+    tokens_y = re.split("[\t ]", line_y)
+    assert len(tokens_x) == len(tokens_y)
     output_x = []
     output_y = []
-    for x, y in zip(line_x, line_y):
+    for x, y in zip(tokens_x, tokens_y):
         if x == "":
             break
-        if y not in ("B", "I", ""):
-            sys.exit("Error: wrong tag '%s' at line %d" % (y, ln * 2))
+        assert y in ("B", "I", "")
         output_x.append(x)
         output_y.append("B" if y == "" else y)
     # print(" ".join(output_x))
