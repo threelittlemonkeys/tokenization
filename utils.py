@@ -1,5 +1,9 @@
+import os
+import sys
 import re
+import math
 from parameters import *
+from collections import defaultdict
 
 # Alphanumeric Unicode Blocks
 # 
@@ -19,14 +23,15 @@ def printl(*x):
         return
     print(*x)
 
-def normalize(x, lc = True):
+def normalize(x):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
     if LANG in ("ja", "ko", "zh"):
         x = RE_CJK.sub(r" \1 ", x)
+    if LANG in ("vi"):
+        x = re.sub("_", "__", x)
     x = re.sub("\s+", " ", x)
     x = x.strip()
-    if lc:
-        x = x.lower()
+    x = x.lower()
     return x
 
 def ngram_iter(tokens, sizes):
@@ -34,3 +39,6 @@ def ngram_iter(tokens, sizes):
         for i in range(len(tokens) - j + 1):
             ngram = tokens[i:i + j]
             yield i, ngram
+
+def f1(p, r):
+    return 2 * p * r / (p + r) if p + r else 0

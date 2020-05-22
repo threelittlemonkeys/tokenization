@@ -1,11 +1,9 @@
 import sys
-import math
 from utils import *
-from parameters import *
 
-def load_model():
+def load_model(filename):
     model = dict()
-    fo = open(sys.argv[1])
+    fo = open(filename)
     for line in fo:
         line = line.strip()
         *w, freq, hL, hR = line.split(" ")
@@ -17,9 +15,9 @@ def load_model():
     fo.close()
     return model
 
-def load_stopwords():
+def load_stopwords(filename):
     stopwords = dict()
-    fo = open(sys.argv[2])
+    fo = open(filename)
     for line in fo:
         line = line.strip()
         w, f = line.split("\t")
@@ -59,31 +57,30 @@ def decode(scores):
         output_iob.extend("I" if x else "B" for x in range(j - i))
     return output_pos, output_iob
 
-def tokenize(model, stopwords):
-    output = []
+def tokenize(model, stopwords, filename):
+    y1 = []
 
     # token-in-word separator
     if LANG in ("ja", "ko", "zh"): sep = ""
     elif LANG == "vi": sep = "_"
     else: sep = " "
 
-    fo = open(sys.argv[3])
-    for line in fo:
-        line = line.strip()
-        printl("line = %s\n" % line)
-        line = normalize(line, False)
-        if LANG == "vi":
-            line = re.sub("_", "__", line)
-
+    fo = open(filename)
+    for x0 in fo:
+        x0 = x0.strip()
+        y0 = tuple()
+        if re.match("\S+/\S+( \S+/\S+)*$", x0):
+            x0, y0 = zip(*[re.split("/(?=[^/]+$)", x) for x in x0.split(" ")])
+            x0 = " ".join(x0)
+        x1 = normalize(x0).split(" ")
         k = [0, 0] # stopword position
-        tokens = line.lower().split(" ")
-        scores = [0] * len(tokens)
-        for i in range(len(tokens)):
+        scores = [0] * len(x1)
+        for i in range(len(x1)):
             _scores = []
             for j in NGRAM_SIZES:
-                if i + j > len(tokens):
+                if i + j > len(x1):
                     break
-                w = tuple(tokens[i:i + j])
+                w = tuple(x1[i:i + j])
                 if w in stopwords and (i == k[0] or i >= k[1]):
                     _scores.append((9999, 9999, 9999, len(w)))
                     k = [i, len(w)]
@@ -92,30 +89,33 @@ def tokenize(model, stopwords):
             if not _scores:
                 _scores.append((0, 0, 0, 1))
             scores[i] = max(_scores, key = lambda x: (sum(x[1:3]), x[3]))
-            w = sep.join(tokens[i:i + scores[i][3]])
+            w = sep.join(x1[i:i + scores[i][3]])
             printl("score[%d] =" % i, (*scores[i][:3], w))
 
-        tokens = line.split(" ")
-        output_pos, output_iob = decode(scores)
-        output_str = " ".join(sep.join(tokens[i:j]) for i, j in output_pos)
-        output.append((tokens, output_iob, output_str))
-        printl("\ntokens =", tokens)
-        printl("output_iob =", output_iob)
-        printl("output_str = %s\n" % output_str)
+        x0 = x0.split(" ")
+        y1_pos, y1_iob = decode(scores)
+        y1_str = " ".join(sep.join(x0[i:j]) for i, j in y1_pos)
+        y1.append((x0, y0, y1_iob, y1_str))
+
+        printl("\ntokens =", x0)
+        printl("output_iob =", y1_iob)
+        printl("output_str = %s\n" % y1_str)
         if DEBUG: input()
 
     fo.close()
-    return output
+    return y1 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        sys.exit("Usage: %s model stopwords test_data" % sys.argv[0])
-    model = load_model()
-    stopwords = load_stopwords()
-    output = tokenize(model, stopwords)
-    for tokens, output_iob, output_str in output:
-        # string
-        # print(output_str)
-        # IOB format
-        print("\t".join(tokens))
-        print("\t".join(output_iob))
+    if len(sys.argv) != 5:
+        sys.exit("Usage: %s model stopwords format test_data" % sys.argv[0])
+    model = load_model(sys.argv[1])
+    stopwords = load_stopwords(sys.argv[2])
+    output = tokenize(model, stopwords, sys.argv[4])
+    for x0, _, y1_iob, y1_str in output:
+        if sys.argv[3] == "str":
+            print(y1_str)
+        if sys.argv[3] == "iob":
+            print(" ".join("%s/%s" % (x, y) for x, y in zip (x0, y1_iob)))
+        if sys.argv[3] == "iob-tsv":
+            print(" ".join(x0))
+            print(" ".join(y1_iob))
