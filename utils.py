@@ -23,7 +23,7 @@ def printl(*x):
         return
     print(*x)
 
-def normalize(x):
+def normalize(x, lc = True):
     x = RE_NON_ALNUM.sub(r" \1 ", x)
     if LANG in ("ja", "ko", "zh"):
         x = RE_CJK.sub(r" \1 ", x)
@@ -31,7 +31,8 @@ def normalize(x):
         x = re.sub("_", "__", x)
     x = re.sub("\s+", " ", x)
     x = x.strip()
-    x = x.lower()
+    if lc:
+        x = x.lower()
     return x
 
 def ngram_iter(tokens, sizes):

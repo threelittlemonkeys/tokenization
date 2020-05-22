@@ -72,7 +72,8 @@ def tokenize(model, stopwords, filename):
         if re.match("\S+/\S+( \S+/\S+)*$", x0):
             x0, y0 = zip(*[re.split("/(?=[^/]+$)", x) for x in x0.split(" ")])
             x0 = " ".join(x0)
-        x1 = normalize(x0).split(" ")
+        x0 = normalize(x0, False).split(" ")
+        x1 = [x.lower() for x in x0]
         k = [0, 0] # stopword position
         scores = [0] * len(x1)
         for i in range(len(x1)):
@@ -92,7 +93,6 @@ def tokenize(model, stopwords, filename):
             w = sep.join(x1[i:i + scores[i][3]])
             printl("score[%d] =" % i, (*scores[i][:3], w))
 
-        x0 = x0.split(" ")
         y1_pos, y1_iob = decode(scores)
         y1_str = " ".join(sep.join(x0[i:j]) for i, j in y1_pos)
         y1.append((x0, y0, y1_iob, y1_str))
@@ -114,8 +114,8 @@ if __name__ == "__main__":
     for x0, _, y1_iob, y1_str in output:
         if sys.argv[3] == "str":
             print(y1_str)
-        if sys.argv[3] == "iob":
+        if sys.argv[3] == "iob-inline":
             print(" ".join("%s/%s" % (x, y) for x, y in zip (x0, y1_iob)))
-        if sys.argv[3] == "iob-tsv":
+        if sys.argv[3] == "iob-csv":
             print(" ".join(x0))
             print(" ".join(y1_iob))
