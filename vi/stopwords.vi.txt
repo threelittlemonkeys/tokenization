@@ -1,5 +1,6 @@
 a ha	True
 a lô	True
+a-lô	True
 ai	False
 ai ai	True
 ai nấy	True
@@ -1120,6 +1121,8 @@ qua khỏi	True
 qua lại	True
 qua lần	True
 qua ngày	True
+qua quít	True
+qua quýt	True
 qua tay	True
 qua thì	True
 qua đi	True
@@ -1131,25 +1134,40 @@ quay bước	True
 quay lại	True
 quay số	True
 quay đi	True
+quyết	False
+quyết nhiên	True
+quyển	False
 quá	False
 quá bán	True
 quá bộ	True
+quá chừng	True
 quá giờ	True
+quá lắm	True
 quá lời	True
 quá mức	True
 quá nhiều	True
+quá sá	True
 quá tay	True
 quá thì	True
+quá thể	True
 quá tin	True
 quá trình	True
+quá trời	True
 quá tuổi	True
+quá xá	True
 quá đáng	True
+quá đỗi	True
+quá độ	True
 quá ư	True
+quý hồ	True
 quả	False
 quả là	True
+quả tang	True
 quả thật	True
 quả thế	True
+quả tình	True
 quả vậy	True
+quả đúng	True
 quận	False
 ra	False
 ra bài	False
@@ -1160,8 +1178,10 @@ ra lại	True
 ra lời	True
 ra ngôi	True
 ra người	True
+ra phết	True
 ra sao	True
 ra tay	True
+ra trò	True
 ra vào	True
 ra ý	True
 ra điều	True
@@ -1235,6 +1255,7 @@ sáng thế	True
 sáng ý	True
 sì	False
 sì sì	True
+sạch	False
 sất	True
 sắp	False
 sắp đặt	True
@@ -1770,6 +1791,7 @@ yêu cầu	False
 đang	False
 đang tay	True
 đang thì	True
+đi	False
 điều	False
 điều gì	True
 điều kiện	True
