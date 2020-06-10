@@ -69,7 +69,7 @@ def tokenize(model, stopwords, filename):
     for x0 in fo:
         x0 = x0.strip()
         y0 = tuple()
-        if re.match("\S+/\S+( \S+/\S+)*$", x0):
+        if re.match("\S+/[^ /]+( \S+/[^ /]+)*$", x0):
             x0, y0 = zip(*[re.split("/(?=[^/]+$)", x) for x in x0.split(" ")])
             x0 = " ".join(x0)
         x0 = normalize(x0, False).split(" ")
@@ -100,7 +100,6 @@ def tokenize(model, stopwords, filename):
         printl("\ntokens =", x0)
         printl("output_iob =", y1_iob)
         printl("output_str = %s\n" % y1_str)
-        if DEBUG: input()
 
     fo.close()
     return y1 
