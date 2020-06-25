@@ -1,0 +1,110 @@
+Neural Machine Translation of Rare Words with Subword Units
+Abstract
+Neural machine translation (NMT) models typically operate with a fixed vocabulary, but translation is an open-vocabulary problem.
+Previous work addresses the translation of out-of-vocabulary words by backing off to a dictionary.
+In this paper, we introduce a simpler and more effective approach, making the NMT model capable of open-vocabulary translation by encoding rare and unknown words as sequences of subword units.
+This is based on the intuition that various word classes are translatable via smaller units than words, for instance names (via character copying or transliteration), compounds (via compositional translation), and cognates and loanwords (via phonological and morphological transformations).
+We discuss the suitability of different word segmentation techniques, including simple character n-gram models and a segmentation based on the byte pair encoding compression algorithm, and empirically show that subword models improve over a back-off dictionary baseline for the WMT 15 translation tasks English-German and English-Russian by up to 1.1 and 1.3 BLEU, respectively.
+1 Introduction
+Neural machine translation has recently shown impressive results (Kalchbrenner and Blunsom, 2013; Sutskever et al., 2014; Bahdanau et al., 2015).
+However, the translation of rare words is an open problem.
+The vocabulary of neural models is typically limited to 30 000–50 000 words, but translation is an open-vocabulary problem, and especially for languages with productive word formation processes such as agglutination and compounding, translation models require mechanisms that go below the word level.
+As an example, consider compounds such as the German Abwasser|behandlungs|anlange ‘sewage water treatment plant’, for which a segmented, variable-length representation is intuitively more appealing than encoding the word as a fixed-length vector.
+For word-level NMT models, the translation of out-of-vocabulary words has been addressed through a back-off to a dictionary look-up (Jean et al., 2015; Luong et al., 2015b).
+We note that such techniques make assumptions that often do not hold true in practice.
+For instance, there is not always a 1-to-1 correspondence between source and target words because of variance in the degree of morphological synthesis between languages, like in our introductory compounding example.
+Also, word-level models are unable to translate or generate unseen words.
+Copying unknown words into the target text, as done by (Jean et al., 2015; Luong et al., 2015b), is a reasonable strategy for names, but morphological changes and transliteration is often required, especially if alphabets differ.
+We investigate NMT models that operate on the level of subword units.
+Our main goal is to model open-vocabulary translation in the NMT network itself, without requiring a back-off model for rare words.
+In addition to making the translation process simpler, we also find that the subword models achieve better accuracy for the translation of rare words than large-vocabulary models and back-off dictionaries, and are able to productively generate new words that were not seen at training time.
+Our analysis shows that the neural networks are able to learn compounding and transliteration from subword representations.
+This paper has two main contributions:
+We show that open-vocabulary neural machine translation is possible by encoding (rare) words via subword units.
+We find our architecture simpler and more effective than using large vocabularies and back-off dictionaries (Jean et al., 2015; Luong et al., 2015b).
+We adapt byte pair encoding (BPE) (Gage, 1994), a compression algorithm, to the task of word segmentation.
+BPE allows for the representation of an open vocabulary through a fixed-size vocabulary of variable-length character sequences, making it a very suitable word segmentation strategy for neural network models.
+2 Neural Machine Translation
+We follow the neural machine translation architecture by Bahdanau et al. (2015), which we will briefly summarize here.
+However, we note that our approach is not specific to this architecture.
+The neural machine translation system is implemented as an encoder-decoder network with recurrent
+neural networks.
+The encoder is a bidirectional neural network with gated recurrent units (Cho et al., 2014) that reads an input sequence x = (x1, ..., xm) and calculates a forward sequence of hidden states (h1, ..., hm), and a backward sequence (h1, ..., hm).
+The hidden states hj and hj are concatenated to obtain the annotation vector hj.
+The decoder is a recurrent neural network that predicts a target sequence y = (y1, ..., yn).
+Each word yi is predicted based on a recurrent hidden state si, the previously predicted word yi−1, and a context vector ci.
+ci is computed as a weighted sum of the annotations hj.
+The weight of each annotation hj is computed through an alignment model αij, which models the probability that yi is aligned to xj.
+The alignment model is a singlelayer feedforward neural network that is learned jointly with the rest of the network through backpropagation.
+A detailed description can be found in (Bahdanau et al., 2015).
+Training is performed on a parallel corpus with stochastic gradient descent.
+For translation, a beam search with small beam size is employed.
+3 Subword Translation
+The main motivation behind this paper is that the translation of some words is transparent in that they are translatable by a competent translator even if they are novel to him or her, based on a translation of known subword units such as morphemes or phonemes.
+Word categories whose translation is potentially transparent include:
+Named entities.
+Between languages that share an alphabet, names can often be copied from source to target text.
+Transcription or transliteration may be required, especially if the alphabets or syllabaries differ.
+Example:
+Barack Obama (English; German)
+Барак Обама (Russian)
+バラク・オバマ (ba-ra-ku o-ba-ma) (Japanese)
+Cognates and loanwords.
+Cognates and loanwords with a common origin can differ in regular ways between languages, so that character-level translation rules are sufficient (Tiedemann, 2012).
+Example:
+claustrophobia (English)
+Klaustrophobie (German)
+Клаустрофобия (Klaustrofobiâ) (Russian)
+Morphologically complex words.
+Words containing multiple morphemes, for instance formed via compounding, affixation, or inflection, may be translatable by translating the morphemes separately.
+Example:
+solar system (English)
+Sonnensystem (Sonne + System) (German)
+Naprendszer (Nap + Rendszer) (Hungarian)
+In an analysis of 100 rare tokens (not among the 50 000 most frequent types) in our German training data, the majority of tokens are potentially translatable from English through smaller units.
+We find 56 compounds, 21 names, 6 loanwords with a common origin (emancipate→emanzipieren), 5 cases of transparent affixation (sweetish ‘sweet’ + ‘-ish’ -> süßlich ‘süß’ + ‘-lich’), 1 number and 1 computer language identifier.
+Our hypothesis is that a segmentation of rare words into appropriate subword units is sufficient to allow for the neural translation network to learn transparent translations, and to generalize this knowledge to translate and produce unseen words.
+We provide empirical support for this hypothesis in Sections 4 and 5. First, we discuss different subword representations.
+3.1 Related Work
+For Statistical Machine Translation (SMT), the translation of unknown words has been the subject of intensive research.
+A large proportion of unknown words are names, which can just be copied into the target text if both languages share an alphabet.
+If alphabets differ, transliteration is required (Durrani et al., 2014).
+Character-based translation has also been investigated with phrase-based models, which proved especially successful for closely related languages (Vilar et al., 2007; Tiedemann, 2009; Neubig et al., 2012).
+The segmentation of morphologically complex words such as compounds is widely used for SMT, and various algorithms for morpheme segmentation have been investigated (Nießen and Ney, 2000; Koehn and Knight, 2003; Virpioja et al., 2007; Stallard et al., 2012).
+Segmentation algorithms commonly used for phrase-based SMT tend to be conservative in their splitting decisions, whereas we aim for an aggressive segmentation that allows for open-vocabulary translation with a compact network vocabulary, and without having to resort to back-off dictionaries.
+The best choice of subword units may be taskspecific.
+For speech recognition, phone-level language models have been used (Bazzi and Glass, 2000).
+Mikolov et al. (2012) investigate subword language models, and propose to use syllables.
+For multilingual segmentation tasks, multilingual algorithms have been proposed (Snyder and Barzilay, 2008).
+We find these intriguing, but inapplicable at test time.
+Various techniques have been proposed to produce fixed-length continuous word vectors based on characters or morphemes (Luong et al., 2013; Botha and Blunsom, 2014; Ling et al., 2015a; Kim et al., 2015).
+An effort to apply such techniques to NMT, parallel to ours, has found no significant improvement over word-based approaches (Ling et al., 2015b).
+One technical difference from our work is that the attention mechanism still operates on the level of words in the model by Ling et al. (2015b), and that the representation of each word is fixed-length.
+We expect that the attention mechanism benefits from our variable-length representation: the network can learn to place attention on different subword units at each step.
+Recall our introductory example Abwasserbehandlungsanlange, for which a subword segmentation avoids the information bottleneck of a fixed-length representation.
+Neural machine translation differs from phrasebased methods in that there are strong incentives to minimize the vocabulary size of neural models to increase time and space efficiency, and to allow for translation without back-off models.
+At the same time, we also want a compact representation of the text itself, since an increase in text length reduces efficiency and increases the distances over which neural models need to pass information.
+A simple method to manipulate the trade-off between vocabulary size and text size is to use shortlists of unsegmented words, using subword units only for rare words.
+As an alternative, we propose a segmentation algorithm based on byte pair encoding (BPE), which lets us learn a vocabulary that provides a good compression rate of the text.
+3.2 Byte Pair Encoding (BPE)
+Byte Pair Encoding (BPE) (Gage, 1994) is a simple data compression technique that iteratively replaces the most frequent pair of bytes in a sequence with a single, unused byte.
+We adapt this algorithm for word segmentation.
+Instead of merging frequent pairs of bytes, we merge characters or character sequences.
+Firstly, we initialize the symbol vocabulary with the character vocabulary, and represent each word as a sequence of characters, plus a special end-ofword symbol ‘·’, which allows us to restore the original tokenization after translation.
+We iteratively count all symbol pairs and replace each occurrence of the most frequent pair (‘A’, ‘B’) with a new symbol ‘AB’.
+Each merge operation produces a new symbol which represents a character n-gram.
+Frequent character n-grams (or whole words) are eventually merged into a single symbol, thus BPE requires no shortlist.
+The final symbol vocabulary size is equal to the size of the initial vocabulary, plus the number of merge operations – the latter is the only hyperparameter of the algorithm.
+For efficiency, we do not consider pairs that cross word boundaries.
+The algorithm can thus be run on the dictionary extracted from a text, with each word being weighted by its frequency.
+A minimal Python implementation is shown in Algorithm 1.
+In practice, we increase efficiency by indexing all pairs, and updating data structures incrementally.
+The main difference to other compression algorithms, such as Huffman encoding, which have been proposed to produce a variable-length encoding of words for NMT (Chitnis and DeNero, 2015), is that our symbol sequences are still interpretable as subword units, and that the network can generalize to translate and produce new words (unseen at training time) on the basis of these subword units.
+Figure 1 shows a toy example of learned BPE operations.
+At test time, we first split words into sequences of characters, then apply the learned operations to merge the characters into larger, known symbols.
+This is applicable to any word, and allows for open-vocabulary networks with fixed symbol vocabularies.
+In our example, the OOV ‘lower’ would be segmented into ‘low er·’.
+We evaluate two methods of applying BPE: learning two independent encodings, one for the source, one for the target vocabulary, or learning the encoding on the union of the two vocabularies (which we call joint BPE).
+The former has the advantage of being more compact in terms of text and vocabulary size, and having stronger guarantees that each subword unit has been seen in the training text of the respective language, whereas the latter improves consistency between the source and the target segmentation.
+If we apply BPE independently, the same name may be segmented differently in the two languages, which makes it harder for the neural models to learn a mapping between the subword units.
+To increase the consistency between English and Russian segmentation despite the differing alphabets, we transliterate the Russian vocabulary into Latin characters with ISO-9 to learn the joint BPE encoding, then transliterate the BPE merge operations back into Cyrillic to apply them to the Russian training text.
