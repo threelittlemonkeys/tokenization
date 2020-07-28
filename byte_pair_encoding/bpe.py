@@ -40,7 +40,7 @@ class bpe():
         fo.close()
         return data
 
-    def load_model(self, filename):
+    def load_vocab(self, filename):
         fo = open(filename)
         for line in fo:
             line = line.strip()
@@ -48,11 +48,12 @@ class bpe():
             self.vocab.append((tuple(w), f))
         fo.close()
 
-    def save_model(self, filename):
+    def save_vocab(self, filename):
         fo = open(filename, "w")
         for w, f in self.vocab:
-            fo.write("%s %d\n" % (" ".join(w), f))
+            print(" ".join(w), f, file = fo)
         fo.close()
+
 
     def find_pair(self, data):
         pairs = defaultdict(int)
@@ -64,11 +65,11 @@ class bpe():
         return sorted(pairs.items(), key = lambda x: -x[1])[0]
 
     def merge_data(self, data, pair):
-        merged = {}
+        _data = {}
         for w0, f in data.items():
             w1 = self.merge(w0, pair)
-            merged[tuple(w1)] = f
-        return merged
+            _data[tuple(w1)] = f
+        return _data
 
     def train(self, filename):
         data = self.load_data(filename)
@@ -78,8 +79,9 @@ class bpe():
                 break
             self.vocab.append(pair)
             data = self.merge_data(data, pair[0])
+            w, f = pair
             if self.verbose:
-                print("pair[%d] =" % i, "%s, %d" % pair)
+                print("pair[%d] = %s, %d " % (i + 1, w, f))
 
     def predict(self, line):
         line = self.tokenize(line)
@@ -91,16 +93,16 @@ class bpe():
 
 if __name__ == "__main__":
     if len(sys.argv) not in (4, 5):
-        sys.exit("Usage: %s train|predict model data num_iters" % sys.argv[0])
+        sys.exit("Usage: %s train|predict vocab data num_iters" % sys.argv[0])
 
     if sys.argv[1] == "train":
         bpe = bpe(int(sys.argv[4]))
         bpe.train(sys.argv[3])
-        bpe.save_model(sys.argv[2])
+        bpe.save_vocab(sys.argv[2])
 
     if sys.argv[1] == "predict":
         bpe = bpe()
-        bpe.load_model(sys.argv[2])
+        bpe.load_vocab(sys.argv[2])
         fo = open(sys.argv[3])
         for line in fo:
             line = line.strip()
