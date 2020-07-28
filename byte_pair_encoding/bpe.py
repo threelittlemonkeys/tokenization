@@ -5,9 +5,8 @@ from collections import defaultdict
 class bpe():
     def __init__(self, num_iters = 0):
         self.num_iters = num_iters
-        self.vocab = None
+        self.vocab = []
         self.verbose = True
-        pass
 
     @staticmethod
     def tokenize(x):
@@ -42,7 +41,6 @@ class bpe():
         return data
 
     def load_model(self, filename):
-        self.vocab = []
         fo = open(filename)
         for line in fo:
             line = line.strip()
@@ -74,7 +72,6 @@ class bpe():
 
     def train(self, filename):
         data = self.load_data(filename)
-        self.vocab = []
         for i in range(self.num_iters):
             pair = self.find_pair(data)
             if not pair:
