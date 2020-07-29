@@ -1,8 +1,10 @@
-# Word Segmentation
+# Tokenization
 
-Unsupervised word segmentation.
+Unsupervised tokenization and word segmentation.
 
 ## References
+
+Tagyoung Chung, Daniel Gildea. 2009. [Unsupervised Tokenization for Machine Translation.](https://www.aclweb.org/anthology/D09-1075.pdf) In EMNLP.
 
 Jin Hu Huang, David Powers. 2003. [Chinese Word Segmentation Based on Contextual Entropy.](https://www.aclweb.org/anthology/Y03-1017.pdf) In Proceedings of the 17th Pacific Asia Conference on Language, Information and Computation.
 
