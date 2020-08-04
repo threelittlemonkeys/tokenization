@@ -1,12 +1,6 @@
 import sys
 import re
 
-class _match():
-    def __init__(self):
-        self.str = ""
-        self.span = [0, 0]
-        self.state = None
-
 class fst():
     def __init__(self, filename):
         self.fst = dict()
@@ -23,41 +17,37 @@ class fst():
             line = line[:-1]
             if not re.search("^\S+\t\S+\t\S+$", line):
                 sys.exit("Syntax error on line %d: %s" % (ln, line))
-            b, a, i = line.split("\t")
-            a = set(None if e == "0" else e for e in a.split(","))
-            self.fst[i] = (a, b)
-            if len(i) > self.maxlen:
-                self.maxlen = len(i)
+            s1, s0, c = line.split("\t")
+            if c not in self.fst:
+                self.fst[c] = dict()
+            s1 = s1.split(",")
+            for s0 in s0.split(","):
+                if s0 not in self.fst[c]:
+                    self.fst[c][s0] = set()
+                self.fst[c][s0].update(s1)
+            if len(c) > self.maxlen:
+                self.maxlen = len(c)
         fo.close()
 
-    def search(self, line):
-        i = 0
-        matches = [_match()]
-        while i < len(line):
-            for j in range(self.maxlen, 0, -1):
-                j += i
-                if j > len(line):
-                    continue
-                w = line[i:j]
-                if w not in self.fst:
-                    continue
-                if matches[-1].state not in self.fst[w][0]:
-                    continue
-                if matches[-1].state == None:
-                    matches[-1].span[0] = i
-                i = j
-                matches[-1].str += w
-                matches[-1].span[1] = j
-                matches[-1].state = self.fst[w][1]
+    def match(self, line, i, s0):
+        for j in range(self.maxlen):
+            j += i
+            if j > len(line):
                 break
-            else:
-                if matches[-1].state != None:
-                    matches.append(_match())
-                    continue
-                i += 1
-        if matches[-1].state == None:
-            matches.pop()
-        return matches
+            w = line[i:j]
+            if w not in self.fst:
+                continue
+            if s0 not in self.fst[w]:
+                continue
+            for s1 in self.fst[w][s0]:
+                for m in self.match(line, i + len(w), s1):
+                    yield (i, w + m[1],  m[2])
+        yield (i, "", s0)
+
+    def search(self, line):
+        for i in range(len(line)):
+            m = list(self.match(line, i, "0"))
+            print(m)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -66,11 +56,7 @@ if __name__ == "__main__":
     fo = open(sys.argv[2])
     for line in fo:
         line = line.strip()
-        matches = fst.search(line)
-        if not matches:
-            continue
         print(line)
-        for match in matches:
-            print(match.str, match.state)
+        fst.search(line)
         break
     fo.close()

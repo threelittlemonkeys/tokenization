@@ -22,10 +22,10 @@ VE_었	VB	였
 VE_었	VB	셨
 VE_었	VB	셨겠
 VE_었	VB	셨던
-VE_었	VB_시	엇
-VE_었	VB_시	엇던
-VE_었	VB_시	었
-VE_었	VB_시	었던
+VE_었	VE_시	엇
+VE_었	VE_시	엇던
+VE_었	VE_시	었
+VE_었	VE_시	었던
 
 VE_는	0	한
 VE_는	VB,VE_시	는
@@ -82,6 +82,9 @@ VE	VE_어	도
 VE	VE_었	떠
 VE	VB,VE_시	라
 VE	VB,VE_시	라고
+VE	VB,VE_시	러
+VE	VB,VE_시	려
+VE	VB,VE_시	려고
 VE	VB,VE_시	려니
 VE	VB,VE_시	려면
 VE	VB,VE_시	려면은
