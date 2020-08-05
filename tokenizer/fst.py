@@ -29,7 +29,7 @@ class fst():
                 self.maxlen = len(c)
         fo.close()
 
-    def match(self, line, i, s0):
+    def find(self, line, i, s0):
         for j in range(self.maxlen):
             j += i
             if j > len(line):
@@ -40,14 +40,14 @@ class fst():
             if s0 not in self.fst[w]:
                 continue
             for s1 in self.fst[w][s0]:
-                for m in self.match(line, i + len(w), s1):
-                    yield (i, w + m[1],  m[2])
-        yield (i, "", s0)
+                for j, s1 in self.find(line, j, s1):
+                    yield (len(w) + j, s1)
+        yield (0, s0)
 
-    def search(self, line):
+    def finditer(self, line):
         for i in range(len(line)):
-            m = list(self.match(line, i, "0"))
-            print(m)
+            j, s1 = max(self.find(line, i, "0"))
+            yield (i, i + j, s1) if j else None
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -57,6 +57,9 @@ if __name__ == "__main__":
     for line in fo:
         line = line.strip()
         print(line)
-        fst.search(line)
-        break
+        for m in fst.finditer(line):
+            if not m:
+                continue
+            i, j, k = m
+            print(line[i:j], k)
     fo.close()
