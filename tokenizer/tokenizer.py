@@ -1,5 +1,6 @@
 import sys
 import re
+from fst import fst
 
 from tokenizer_en import tokenize_en
 from tokenizer_ko import tokenize_ko
@@ -14,11 +15,16 @@ def normalize(line):
     return line
 
 def tokenize(lang, filename):
+    if lang == "ko":
+        fst_ko = fst("tokenizer_ko.fst")
+
     fo = open(filename)
     for line in fo:
         line = normalize(line)
         line = tokenize_en(line)
-        line = tokenize_ko(line)
+        if lang == "ko":
+            line = tokenize_ko(fst_ko, line)
+        print(line)
     fo.close()
 
 if __name__ == "__main__":

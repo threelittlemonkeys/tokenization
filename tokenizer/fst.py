@@ -46,8 +46,8 @@ class fst():
 
     def finditer(self, line):
         for i in range(len(line)):
-            j, s1 = max(self.find(line, i, "0"))
-            yield (i, i + j, s1) if j else None
+            j, st = max(self.find(line, i, "0"))
+            yield (i, i + j, st) if j else None
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -60,6 +60,6 @@ if __name__ == "__main__":
         for m in fst.finditer(line):
             if not m:
                 continue
-            i, j, k = m
-            print(line[i:j], k)
+            i, j, st = m
+            print(line[i:j], st)
     fo.close()
