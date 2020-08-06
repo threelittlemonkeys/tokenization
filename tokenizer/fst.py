@@ -15,9 +15,9 @@ class fst():
             if line == "\n":
                 continue
             line = line[:-1]
-            if not re.search("^\S+\t\S+\t\S+$", line):
+            if not re.search("^\S+ \S+ \S+$", line):
                 sys.exit("Syntax error on line %d: %s" % (ln, line))
-            s1, s0, c = line.split("\t")
+            s1, s0, c = line.split(" ")
             if c not in self.fst:
                 self.fst[c] = dict()
             s1 = s1.split(",")
@@ -31,7 +31,7 @@ class fst():
 
     def find(self, line, i, s0):
         for j in range(self.maxlen):
-            j += i
+            j += i + 1
             if j > len(line):
                 break
             w = line[i:j]
@@ -46,6 +46,7 @@ class fst():
 
     def finditer(self, line):
         for i in range(len(line)):
+            m = list(self.find(line, i, "0"))
             j, st = max(self.find(line, i, "0"))
             yield (i, i + j, st) if j else None
 
