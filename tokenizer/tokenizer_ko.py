@@ -7,12 +7,12 @@ def tokenize_ko(fst, line):
     for i, w in enumerate(tokens):
         if not _HANGUL.search(w):
             continue
-        for m in fst.finditer(w):
-            if not m:
+        m = list(fst.finditer(w))
+        m = list(filter(lambda x: x and x[1] == len(w), m))
+        if m:
+            j = min(m)[0] # longest match
+            if j == 0:
                 continue
-            p0, p1, st = m
-            if not (p0 > 0 and p1 == len(w)):
-                continue
-            tokens[i] = w[:p0] + " " + w[p0:]
+            tokens[i] = w[:j] + " " + w[j:]
     line = " ".join(tokens)
     return line

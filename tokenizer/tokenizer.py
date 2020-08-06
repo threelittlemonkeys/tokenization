@@ -16,7 +16,12 @@ def normalize(line):
 
 def tokenize(lang, filename):
     if lang == "ko":
-        fst_ko = fst("tokenizer_ko.fst")
+        fst_ko = fst()
+        fst_ko.read("tokenizer_ko.fst")
+        fst_ko.read("tokenizer_ko.EC.fst")
+        fst_ko.read("tokenizer_ko.EF.fst")
+        fst_ko.read("tokenizer_ko.ET.fst")
+        fst_ko.read("tokenizer_ko.J.fst")
 
     fo = open(filename)
     for line in fo:
