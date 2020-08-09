@@ -50,6 +50,7 @@ def tokenize(lang, filename):
         for idx, line in enumerate(fo, 1):
             line = normalize(line)
             line = tokenize_en(line)
+            print(line)
             if lang == "ko":
                 line = tokenize_ko(fst, line)
             print(line)
