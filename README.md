@@ -1,6 +1,6 @@
 # Tokenization
 
-Python implementations of tokenization and word segmentation.
+Various implementations of tokenization and word segmentation.
 
 ## References
 
