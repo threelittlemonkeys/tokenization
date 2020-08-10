@@ -1,6 +1,6 @@
 # Tokenization
 
-Unsupervised tokenization and word segmentation.
+Python implementations of tokenization and word segmentation.
 
 ## References
 
