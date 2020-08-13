@@ -1,3 +1,4 @@
+import os
 import sys
 import re
 import time
@@ -6,6 +7,7 @@ from fst import fst as _fst
 from tokenizer_en import tokenize_en
 from tokenizer_ko import tokenize_ko
 
+PATH = os.path.dirname(os.path.abspath(__file__))
 RE_SPACE = re.compile("[\s\u3000]+") # whitespace
 RE_NON_ALNUM = re.compile("([^ a-z0-9\u4E00-\u9FFF\uAC00-\uD7AF])", re.I) # non-alphanumeric
 
@@ -35,8 +37,8 @@ def tokenize(lang, filename):
     fst = _fst()
     timer = time.time()
     if lang == "ko":
-        fst.read("tokenizer_ko.ADP.fst")
-        fst.read("tokenizer_ko.VB.fst")
+        fst.read(PATH + "/tokenizer_ko.ADP.fst")
+        fst.read(PATH + "/tokenizer_ko.VB.fst")
         # fst.read("tokenizer_ko.EC.fst")
         # fst.read("tokenizer_ko.EF.fst")
         # fst.read("tokenizer_ko.ET.fst")
@@ -50,7 +52,6 @@ def tokenize(lang, filename):
         for idx, line in enumerate(fo, 1):
             line = normalize(line)
             line = tokenize_en(line)
-            print(line)
             if lang == "ko":
                 line = tokenize_ko(fst, line)
             print(line)
